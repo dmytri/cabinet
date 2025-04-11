@@ -1,6 +1,6 @@
 # Define the list of test filenames to include and the order to run them
 TESTS = [
-    "bda_stub.py"
+    "test_bda_stub.py"
 ]
 
 def pytest_ignore_collect(path, config):
