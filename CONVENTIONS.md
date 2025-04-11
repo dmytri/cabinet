@@ -42,7 +42,7 @@ infra:
 # === <bda> ===
 bda:
   definition: >
-    Behavior-Driven Automation is a self-describing and self-testing approach to automating system configuration and dependencies.
+    Behaviour-Driven Automation is a self-describing and self-testing approach to automating system configuration and dependencies.
   structure: |
     Scenario: [infra behaviour]
       Given [precondition]
@@ -53,14 +53,14 @@ bda:
     - Tags: eg @dev, @ci, @stage, @prod required.
     - All configuration and dependencies must be covered by BDA.
     - All BDA feature files must be in tests/ with no subdirectories.
-    - BDA feature filenames must start with bda_ and clearly describe the covered behavior.
+    - BDA feature filenames must start with bda_ and clearly describe the covered behaviour.
     - All Python test files for BDA must be in tests/ with no subdirectories and must start with test_bda_ (e.g., test_bda_stub.py) to comply with pytest conventions.
 # === </bda> ===
 
 # === <atdd> ===
 atdd:
   definition: >
-    Acceptance Test-Driven Development uses natural language scenarios to define and validate system behavior before implementation.
+    Acceptance Test-Driven Development uses natural language scenarios to define and validate system behaviour before implementation.
   structure: |
     Scenario: [behaviour]
       Given [preconditions]
@@ -162,6 +162,6 @@ test_ordering:
 language:
   spelling: >
     Always use Canadian English spelling in all code, comments, documentation, and user-facing text.
-    Examples: "colour" not "color", "favour" not "favor", "organize" not "organise".
+    Examples: "colour" not "color", "favour" not "favor", "organize" not "organise", "behaviour" not "behavior".
 # === </language> ===
 
