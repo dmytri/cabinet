@@ -6,15 +6,16 @@ requires-python = ">=3.12"
 dependencies = ["poethepoet", "pytest-bdd"]
 
 [tool.poe.tasks.dev]
-cmd = "pytest -x --gherkin-terminal-reporter --tb=no -s -v -m dev tests/"
+cmd = "pytest -xsm 'dev and not skip' --tb=short tests/"
 
 [tool.poe.tasks.ci]
-cmd = "pytest -x --tb=long -s -v -m ci tests/"
+cmd = "pytest -xsvm 'ci and not skip' --tb=long tests/"
 
 [tool.pytest.ini_options]
 markers = [
   "dev",
   "ci",
+  "stage",
   "prod"
 ]
 
