@@ -52,8 +52,9 @@ bda:
     - Use BDD conventions; steps are declarative.
     - Tags: eg @dev, @ci, @stage, @prod required.
     - All configuration and dependencies must be covered by BDA.
-    - All BDA steps must be in tests/ with no subdirectories.
-    - Filenames must start with bda_ and clearly describe the covered behavior.
+    - All BDA feature files must be in tests/ with no subdirectories.
+    - BDA feature filenames must start with bda_ and clearly describe the covered behavior.
+    - All Python test files for BDA must be in tests/ with no subdirectories and must start with test_bda_ (e.g., test_bda_stub.py) to comply with pytest conventions.
 # === </bda> ===
 
 # === <atdd> ===
@@ -68,8 +69,9 @@ atdd:
   rules:
     - All features must be covered by ATDD scenarios.
     - Never add a feature not covered by ATDD and backed by pytest tests.
-    - All ATDD steps must be in tests/ with no subdirectories.
-    - Filenames must start with atdd_ and clearly describe the feature.
+    - All ATDD feature files must be in tests/ with no subdirectories.
+    - ATDD feature filenames must start with atdd_ and clearly describe the feature.
+    - All Python test files for ATDD must be in tests/ with no subdirectories and must start with test_atdd_ (e.g., test_atdd_login.py) to comply with pytest conventions.
     - Must not include BDA tags (@dev, @ci, @prod).
 # === </atdd> ===
 
