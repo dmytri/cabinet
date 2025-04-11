@@ -22,7 +22,7 @@ Click the **“Use this template”** button on GitHub to create a new repo.
 ### 🛠️ Via cookiecutter
 
 ```bash
-uvx run cookiecutter gh:dmytri/cabinet
+uvx cookiecutter gh:dmytri/cabinet
 cd new-project
 git remote add origin git@github.com:dmytri/new-project.git
 git add .
