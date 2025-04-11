@@ -1,2 +1,7 @@
+cache-prompts: true
+auto-test: false
+
+test-cmd: "uv run poe dev"
+
 read:
   - CONVENTIONS.md
