@@ -28,7 +28,7 @@ python:
     - uv add --dev pytest
     - uv add --group test pytest-cov
     - uv remove httpx
-    - uv pip sync
+    - uv sync
   reference: https://docs.astral.sh/uv/concepts/projects/dependencies/
 # === </python> ===
 
