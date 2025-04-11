@@ -19,7 +19,7 @@ They allow use of fully production like environments at every stage, and work we
 
 Click the **“Use this template”** button on GitHub to create a new repo.
 
-### 🛠️ Via Cookie Cutter
+### 🛠️ Via cookiecutter
 
 ```bash
 uvx run cookiecutter gh:dmytri/cabinet
@@ -98,6 +98,7 @@ All spelling in code, comments, documentation, and user-facing text must use Can
 ```bash
 ln -s CONVENTIONS.md .cursor-rules
 ```
-
+# cookiecutter Slug
+> {{ cookiecutter.project_slug }}
 
 
