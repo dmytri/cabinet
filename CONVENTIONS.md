@@ -115,3 +115,34 @@ prompts:
     context: Use a file named atdd_user_registration.feature with Given/When/Then steps
 # === </prompt_examples> ===
 
+# === <bdd_stubs> ===
+bdd_stubs:
+  rule: >
+    Whenever a new BDA or ATDD scenario is added in a .feature file,
+    corresponding Python step definitions must be created in the tests/ directory.
+    Each Given/When/Then step in the feature file must have a matching Python function
+    decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
+    The test function decorated with @scenario should also be marked as skipped with pytest.skip("not implemented").
+    This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
+
+  example: |
+    from pytest_bdd import scenario, given, when, then
+    import pytest
+
+    @scenario("bda_example.feature", "Example scenario")
+    def test_bda_example():
+        pytest.skip("not implemented")
+
+    @given("some precondition")
+    def some_precondition():
+        pytest.skip("not implemented")
+
+    @when("an action occurs")
+    def an_action_occurs():
+        pytest.skip("not implemented")
+
+    @then("an outcome is verified")
+    def an_outcome_is_verified():
+        pytest.skip("not implemented")
+# === </bdd_stubs> ===
+
