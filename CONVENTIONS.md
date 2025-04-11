@@ -158,3 +158,10 @@ test_ordering:
     - All ATDD tests (files starting with atdd_) must always be listed after all BDA tests (files starting with bda_) in the TESTS list, so that BDA tests run first.
 # === </test_ordering> ===
 
+# === <language> ===
+language:
+  spelling: >
+    Always use Canadian English spelling in all code, comments, documentation, and user-facing text.
+    Examples: "colour" not "color", "favour" not "favor", "organize" not "organise".
+# === </language> ===
+
