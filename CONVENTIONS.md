@@ -81,6 +81,7 @@ code:
     - Do not add validations, docstrings, typing, or alternative approaches unless they are explicitly asked for.
     - Do not modify unrelated code, even if it appears broken or suboptimal.
     - If the request is ambiguous, ask for clarification — do not assume or guess.
+    - Do not suggest or make any code changes in response to test output unless the user explicitly requests a fix or modification.
 # === </code> ===
 
 # === <setup> ===
