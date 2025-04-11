@@ -1,3 +1,35 @@
+> This is a trick.ca/binet Template
+
+Cabinets package entire applications for use across the development lifecycle.
+
+- in dev
+```bash
+tilt up --namespace target
+```
+- in ci
+```bash
+tilt up --ci --namespace target
+```
+They allow use of fully production like enivoments at every stage, and work well with gitops.
+
+
+## 🧪 Using This Template
+
+### ✅ From GitHub
+
+Click the **“Use this template”** button on GitHub to create a new repo.
+
+### 🛠️ Via Cookie Cutter
+
+```bash
+pipx run cookiecutter gh:dmytri/cabinet
+cd new-project
+git remote add origin git@github.com:dmytri/new-project.git
+git add .
+git commit -m "Initial commit from template"
+git push -u origin main
+```
+
 ## Key Practices
 
 - All code and automation tasks follow [Behaviour-Driven Automation (BDA)] and [Acceptance Test-Driven Development (ATDD)] patterns.
