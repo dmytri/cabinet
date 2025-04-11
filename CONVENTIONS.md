@@ -20,7 +20,6 @@ python:
   dependency_management: uv
   enforce_pyproject: true
   pip_disallowed: true
-  scripts_must_use_poe: true
   run_script: "uv run poe <task>"
   run_start: "uv run poe start"
   run_dev: "uv run poe dev"
@@ -104,11 +103,9 @@ setup:
 critical:
   must:
     - Host must already have Tilt, Minikube, Python, and uv installed
-    - All test dependencies must be in Apply container
     - All app dependencies must be defined and provisioned by BDA in the target environment
     - All exposed ports must be defined in manifest.yml and forwarded in Tiltfile
   must_not:
-    - Modify host beyond permitted dependencies
     - Install Python packages outside the dependency system
     - Bypass Tilt for Kubernetes operations
 # === </critical> ===
