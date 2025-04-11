@@ -146,3 +146,10 @@ bdd_stubs:
         pytest.skip("not implemented")
 # === </bdd_stubs> ===
 
+# === <test_ordering> ===
+test_ordering:
+  rules:
+    - Any new pytest test file must be added to the TESTS list in tests/conftest.py for it to be collected and run.
+    - All ATDD tests (files starting with atdd_) must always be listed after all BDA tests (files starting with bda_) in the TESTS list, so that BDA tests run first.
+# === </test_ordering> ===
+
