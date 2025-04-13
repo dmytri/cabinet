@@ -98,7 +98,4 @@ All spelling in code, comments, documentation, and user-facing text must use Can
 ```bash
 ln -s CONVENTIONS.md .cursor-rules
 ```
-# cookiecutter Slug
-> {{ cookiecutter.project_slug }}
-
 
