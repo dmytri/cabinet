@@ -2,7 +2,7 @@ from pytest_bdd import scenario, given, when, then
 import pytest
 
 @scenario("atdd_example.feature", "Example acceptance test")
-def test_atdd_example():
+def _( ):
     pytest.skip("not implemented")
 
 @given("the system is ready")

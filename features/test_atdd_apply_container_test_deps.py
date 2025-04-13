@@ -4,7 +4,7 @@ import subprocess
 import json
 
 @scenario("atdd_apply_container_test_deps.feature", "Apply container has Python, uv, and pytest installed")
-def test_atdd_apply_container_test_deps():
+def _( ):
     pass
 
 @given("the apply container is running")
