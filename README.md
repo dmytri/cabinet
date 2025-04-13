@@ -52,9 +52,9 @@ uv run poe test       # run tests
 Before you begin, ensure you have the following installed on your system:
 
 - [Tilt](https://docs.tilt.dev/)
-- A Kubernetes cluster (local, e.g., [Minikube](https://minikube.sigs.k8s.io/docs/), [Kind](https://kind.sigs.k8s.io/), or [Docker Desktop with Kubernetes enabled](https://docs.docker.com/desktop/kubernetes/)), or a remote cluster
 - [Python](https://www.python.org/)
 - [uv](https://docs.astral.sh/uv/)
+- A Kubernetes cluster (local, e.g., [Minikube](https://minikube.sigs.k8s.io/docs/), [Kind](https://kind.sigs.k8s.io/), or [Docker Desktop with Kubernetes enabled](https://docs.docker.com/desktop/kubernetes/)), or a remote cluster
 
 ## Dependency Management
 
