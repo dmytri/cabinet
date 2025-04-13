@@ -1,6 +1,7 @@
 # Define the list of test filenames to include and the order to run them
 TESTS = [
     "test_bda_stub.py",
+    "test_atdd_apply_container_test_deps.py",
     "test_atdd_example.py"
 ]
 
