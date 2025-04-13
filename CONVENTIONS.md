@@ -74,6 +74,7 @@ atdd
     - ATDD feature filenames must start with atdd_ and clearly describe the feature.
     - All Python test files for ATDD must be in features/ with no subdirectories and must start with test_atdd_ (e.g., test_atdd_login.py) to comply with pytest conventions.
     - Must not include BDA tags (@dev, @ci, @prod).
+    - All ATDD scenarios must be tagged with @atdd.
 # === </atdd> ===
 
 # === <code> ===
