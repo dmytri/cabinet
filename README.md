@@ -36,7 +36,7 @@ git push -u origin main
 ## Key Practices
 
 - All code and automation tasks follow Behaviour-Driven Automation (BDA) and Acceptance Test-Driven Development (ATDD) patterns.
-- Infra is managed declaratively with Kubernetes manifests applied via Tilt.
+- Supporting infrastructure for development and testing (such as the `apply` container, and optionally others) is managed declaratively with Kubernetes manifests and Tilt. Actual application deployment and provisioning is defined by BDA and may use any system.
 - Testing and provisioning scenarios live in `features/`, with filenames prefixed by `bda_` or `atdd_`.
 - Python test files must be named `test_bda_*.py` for BDA and `test_atdd_*.py` for ATDD.
 - Feature files must be named `bda_*.feature` for BDA and `atdd_*.feature` for ATDD.
