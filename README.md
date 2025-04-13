@@ -19,12 +19,12 @@ They allow use of fully production like environments at every stage, and work we
 
 Click the **“Use this template”** button on GitHub to create a new repo.
 
-### 🛠️ Via cookiecutter
+### 🛠️ Via copier
 
 ```bash
-uvx cookiecutter gh:dmytri/cabinet
+uvx copier copy https://dmytri/cabinet new-project
 cd new-project
-git remote add origin git@github.com:dmytri/new-project.git
+git remote add origin git@github.com:your-github/new-project.git
 git add .
 git commit -m "Initial commit from template"
 git push -u origin main
