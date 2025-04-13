@@ -8,11 +8,11 @@ def test_atdd_apply_container_test_deps():
     pass
 
 @given("the apply container is running")
-def apply_container_running():
+def _():
     pass
 
 @when("I check for Python, uv, and pytest")
-def check_for_deps(request):
+def _(request):
     result = subprocess.run(
         ["uv", "pip", "list", "--format", "json"],
         capture_output=True,
@@ -26,7 +26,7 @@ def check_for_deps(request):
     request.config.cache.set("atdd_apply_container_test_deps/required", required)
 
 @then("all are installed and available")
-def all_installed(request):
+def _(request):
     installed = request.config.cache.get("atdd_apply_container_test_deps/installed", set())
     required = request.config.cache.get("atdd_apply_container_test_deps/required", set())
     missing = required - installed

@@ -6,13 +6,13 @@ def test_bda_stub():
     pytest.skip("not implemented")
 
 @given("the system is initialized")
-def system_initialized():
+def _():
     pytest.skip("not implemented")
 
 @when("no action is taken")
-def no_action():
+def _():
     pytest.skip("not implemented")
 
 @then("the test passes")
-def test_passes():
+def _():
     pytest.skip("not implemented")
