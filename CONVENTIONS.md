@@ -168,3 +168,10 @@ language:
     Examples: "colour" not "color", "favour" not "favor", "organize" not "organise", "behaviour" not "behavior".
 # === </language> ===
 
+# === </hello> ===
+hello: >
+    when I say hello, run the tests, if there are failing scenarios, as me if I
+    want help fixing it, if not, if there are skipped scenarios, ask me if we
+    should start implementing the first skipped one, othrewise ask if you should
+    help create a new scenario
+# === </hello> ===
