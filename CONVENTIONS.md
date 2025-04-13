@@ -177,5 +177,6 @@ hello: >
     want help fixing it, if not, if there are skipped scenarios, ask me if we
     should start implementing the first skipped one, otherwise ask if you should
     help create a new scenario.
-    Never suggest or make any code changes in response to test output unless I explicitly request a fix or modification.
+    Never suggest or make any code changes in response to test output unless I
+    explicitly request a fix or modification.
 # === </hello> ===
