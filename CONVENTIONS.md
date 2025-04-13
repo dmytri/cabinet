@@ -97,7 +97,7 @@ code:
 setup:
   prerequisites:
     - Tilt
-    - A Kubernetes cluster (local, e.g., Minikube or Kind, or remote)
+    - A Kubernetes cluster (local, e.g., Minikube, Kind, or Docker Desktop with Kubernetes enabled, or remote)
     - Python
     - uv
   test_environment: >
