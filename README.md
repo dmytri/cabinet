@@ -1,4 +1,3 @@
-[![CI](https://github.com/your-org/your-repo/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/your-repo/actions/workflows/ci.yml)
 [![Licence: 0BSD](https://img.shields.io/badge/licence-0BSD-blue.svg)](./LICENSE.md)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](.python-version)
 
@@ -59,7 +58,7 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Dependency Management
 
-All Python dependencies are managed with [uv](https://docs.astral.sh/uv/).  
+All Python dependencies are managed with [uv](https://docs.astral.sh/uv/).
 Do not use `pip` directly.
 
 Example commands:

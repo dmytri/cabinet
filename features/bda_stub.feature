@@ -1,5 +1,4 @@
 Feature: BDA Stub Testing
-  This feature ensures that the BDA stub test passes in the CI environment without any actions.
 
   @dev
   Scenario: Stub BDA test to ensure CI passes

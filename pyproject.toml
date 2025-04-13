@@ -17,7 +17,8 @@ markers = [
   "ci",
   "stage",
   "prod",
-  "atdd"
+  "atdd",
+  "skip"
 ]
 
 filterwarnings = [
