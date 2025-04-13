@@ -38,7 +38,7 @@ git push -u origin main
 
 - All code and automation tasks follow [Behaviour-Driven Automation (BDA)] and [Acceptance Test-Driven Development (ATDD)] patterns.
 - Infra is managed declaratively with Kubernetes manifests applied via Tilt.
-- Testing and provisioning scenarios live in `tests/`, with filenames prefixed by `bda_` or `atdd_`.
+- Testing and provisioning scenarios live in `features/`, with filenames prefixed by `bda_` or `atdd_`.
 - Python test files must be named `test_bda_*.py` for BDA and `test_atdd_*.py` for ATDD.
 - Feature files must be named `bda_*.feature` for BDA and `atdd_*.feature` for ATDD.
 - All tooling runs via `uv` and `poe`, e.g.:
@@ -81,8 +81,8 @@ Example commands:
 
 ## Testing
 
-- All BDA and ATDD scenarios and their step definitions are in the `tests/` directory.
-- New test files must be added to the `TESTS` list in `tests/conftest.py`.
+- All BDA and ATDD scenarios and their step definitions are in the `features/` directory.
+- New test files must be added to the `TESTS` list in `features/conftest.py`.
 - BDA test files (starting with `test_bda_`) must be listed before ATDD test files (starting with `test_atdd_`).
 
 ## Contributing
