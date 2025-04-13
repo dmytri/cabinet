@@ -56,6 +56,7 @@ bda:
     - All Python test files for BDA must be in features/ with no subdirectories and must start with test_bda (e.g., test_bda_stub.py) to comply with pytest conventions.
     - BDA feature filenames must start with bda_ and clearly describe the covered behaviour.
     - All Python test files for BDA must be in features/ with no subdirectories and must start with test_bda_ (e.g., test_bda_stub.py) to comply with pytest conventions.
+    - BDA scenarios must not include the @atdd tag.
 # === </bda> ===
 
 # === <atdd> ===
