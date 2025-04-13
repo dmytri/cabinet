@@ -133,6 +133,7 @@ bdd_stubs:
     corresponding Python step definitions must be created in the tests/ directory.
     Each Given/When/Then step in the feature file must have a matching Python function
     decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
+    All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must be named _ (underscore).
     The test function decorated with @scenario should also be marked as skipped with pytest.skip("not implemented").
     This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
 
@@ -145,15 +146,15 @@ bdd_stubs:
         pytest.skip("not implemented")
 
     @given("some precondition")
-    def some_precondition():
+    def _():
         pytest.skip("not implemented")
 
     @when("an action occurs")
-    def an_action_occurs():
+    def _():
         pytest.skip("not implemented")
 
     @then("an outcome is verified")
-    def an_outcome_is_verified():
+    def _():
         pytest.skip("not implemented")
 # === </bdd_stubs> ===
 
