@@ -53,7 +53,7 @@ Before you begin, ensure you have the following installed on your system:
 
 - [Tilt](https://docs.tilt.dev/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
-- [Python](https://www.python.org/) (see `.python-version` for the required version)
+- [Python](https://www.python.org/)
 - [uv](https://docs.astral.sh/uv/)
 
 ## Dependency Management
