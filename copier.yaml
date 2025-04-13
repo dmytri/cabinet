@@ -1,0 +1,4 @@
+project_slug:
+  type: str
+  help: The name of your project (used for folder and package names)
+  default: cabinet
