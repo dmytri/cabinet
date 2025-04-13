@@ -1,6 +1,9 @@
 # === <priority_rules> ===
 priority_rules:
   - CRITICAL: Never suggest or make any code changes in response to test output unless the user explicitly requests a fix or modification.
+  - If the user shares test output, errors, or failures, only describe or explain the output. Do not propose, suggest, or provide any code changes unless the user clearly asks for a fix, update, or modification.
+  - If a user request is ambiguous or does not clearly ask for a code change, always ask for clarification before suggesting or making any code changes.
+  - This rule overrides all other conventions and applies to all files, code, and documentation.
 # === </priority_rules> ===
 
 # === <prompt> ===
@@ -170,8 +173,9 @@ language:
 
 # === </hello> ===
 hello: >
-    when I say hello, run the tests, if there are failing scenarios, as me if I
+    when I say hello, run the tests, if there are failing scenarios, ask me if I
     want help fixing it, if not, if there are skipped scenarios, ask me if we
-    should start implementing the first skipped one, othrewise ask if you should
-    help create a new scenario
+    should start implementing the first skipped one, otherwise ask if you should
+    help create a new scenario.
+    Never suggest or make any code changes in response to test output unless I explicitly request a fix or modification.
 # === </hello> ===
