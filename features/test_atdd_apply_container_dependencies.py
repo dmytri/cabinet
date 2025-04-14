@@ -13,7 +13,8 @@ def _():
 @when("uv >= 0.6.7")
 def _():
     output = subprocess.check_output(["uv", "--version"], text=True)
-    version_str = output.strip().split()[0]
+    # uv --version output is like: "uv 0.6.7"
+    version_str = output.strip().split()[-1]
     version_tuple = tuple(int(x) for x in version_str.split("."))
     assert version_tuple >= (0, 6, 7)
 
