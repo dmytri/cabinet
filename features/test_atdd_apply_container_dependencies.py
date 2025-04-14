@@ -1,5 +1,5 @@
-import sys, subprocess
-from pytest import skip
+import sys
+import subprocess
 from pytest_bdd import scenarios, scenario, when
 
 scenarios("atdd_apply_container_dependencies.feature")
@@ -12,7 +12,7 @@ def _():
 
 @when("uv >= 0.6.7")
 def _():
-    output = subprocess.check_output(["uv", "--version"], text=True)
+    output = subprocess.check_output(["uv", "run", "uv", "--version"], text=True)
     # uv --version output is like: "uv 0.6.7"
     version_str = output.strip().split()[-1]
     version_tuple = tuple(int(x) for x in version_str.split("."))
