@@ -1,11 +1,9 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-scenarios("atdd_hello_world_site.feature")
+@scenarios("atdd_hello_world_site.feature")
 
 @scenario("atdd_hello_world_site.feature", "Accessing the default Caddy site")
-def _():
-    pass
 
 @given("the target container is running")
 def _():
