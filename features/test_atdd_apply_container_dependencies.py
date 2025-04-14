@@ -24,18 +24,15 @@ def _(required):
     ), "Python version is less than 3.12 or could not be determined"
     required.append("python")
 
-@when("uv is >= 0.6.7")
+@when("uv >= 0.6.7")
 def _(required):
     result = subprocess.run(
-        ["uv", "--version"],
+        ["uv", "run", "uv", "--version"],
         capture_output=True,
         text=True,
         check=True,
     )
     version_line = result.stdout.strip() or result.stderr.strip()
-    if not version_line:
-        raise AssertionError("Could not determine uv version")
-    # uv --version output is like: "uv 0.6.10"
     parts = version_line.split()
     if len(parts) < 2:
         raise AssertionError(f"Unexpected uv version output: {version_line}")
@@ -47,10 +44,26 @@ def _(required):
 
 @when("pytest is required")
 def _(required):
+    result = subprocess.run(
+        ["uv", "run", "pytest", "--version"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    if result.returncode != 0:
+        raise AssertionError("pytest is not available in the container")
     required.append("pytest")
 
 @when("poethepoet is required")
 def _(required):
+    result = subprocess.run(
+        ["uv", "run", "poe", "--version"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    if result.returncode != 0:
+        raise AssertionError("poethepoet is not available in the container")
     required.append("poethepoet")
 
 @then("python is supported version")
@@ -72,14 +85,12 @@ def _(required):
 @then("uv is supported version")
 def _(required):
     result = subprocess.run(
-        ["uv", "--version"],
+        ["uv", "run", "uv", "--version"],
         capture_output=True,
         text=True,
         check=True,
     )
     version_line = result.stdout.strip() or result.stderr.strip()
-    if not version_line:
-        raise AssertionError("Could not determine uv version")
     parts = version_line.split()
     if len(parts) < 2:
         raise AssertionError(f"Unexpected uv version output: {version_line}")
@@ -88,7 +99,7 @@ def _(required):
     if (major, minor, patch) < (0, 6, 7):
         raise AssertionError(f"uv version {version} is less than 0.6.7")
 
-@then("only required or optional packages are present")
+@then("only required packages are present")
 def _(required):
     result = subprocess.run(
         ["uv", "pip", "list", "--format", "json"],
