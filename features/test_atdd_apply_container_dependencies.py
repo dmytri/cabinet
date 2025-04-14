@@ -4,6 +4,10 @@ import json
 
 scenarios("atdd_apply_container_dependencies.feature")
 
+@scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
+def _():
+    pass
+
 REQUIRED_PACKAGES = {
     "python": ">=3.12",
     "uv": None,
