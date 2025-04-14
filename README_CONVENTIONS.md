@@ -1,14 +1,16 @@
 agent:
-    tests:
+  - TESTS:
       - Do not suggest or make any code changes in response to test output
       - After test runs wait for user input
   - Do not modify unrelated code, even if it appears broken or suboptimal.
   - Always use Canadian English spelling.
-  - hello:
+  - HELLO:
       - When I say hello, follow this sequence:
-        - Confirm what you understand from these conventions.
-        - State what you don't understand or can't do.
-        - STOP and don't do anything else
+        - Concisely summerize what you understand as key conventions.
+        - State what you don't understand from the conventions or can't do.
+        - Suggest how we can improve or clarify conventions.
+        - STOP and don't do anything else.
+        - WAIT.
 
 code:
   - Fail early: do not hide errors, allow scripts to fail naturally.
