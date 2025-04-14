@@ -2,7 +2,7 @@ from pytest_bdd import scenarios, when, then
 import subprocess
 import json
 
-@scenarios("atdd_apply_container_dependencies.feature")
+scenarios("atdd_apply_container_dependencies.feature")
 
 REQUIRED_PACKAGES = {
     "python": ">=3.12",
