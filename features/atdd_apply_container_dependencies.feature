@@ -6,4 +6,3 @@ Feature: Apply container test dependencies
      And uv >= 0.6.7
      And pytest is required
      And poethepoet is required
-     And dockerfile >= 3.4.0

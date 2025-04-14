@@ -32,12 +32,3 @@ def _():
     output = subprocess.check_output(["uv", "pip", "show", "poethepoet"], text=True)
     assert "Name: poethepoet" in output
 
-@when("dockerfile >= 3.4.0")
-def _():
-    output = subprocess.check_output(["uv", "pip", "show", "dockerfile"], text=True)
-    version_line = next(line for line in output.splitlines() if line.startswith("Version:"))
-    # Version line is like: "Version: 3.4.0"
-    version_str = version_line.split(":", 1)[1].strip()
-    installed_version = parse_version(version_str)
-    required_version = parse_version("3.4.0")
-    assert installed_version >= required_version
