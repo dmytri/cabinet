@@ -35,7 +35,11 @@ def _(required):
     version_line = result.stdout.strip() or result.stderr.strip()
     if not version_line:
         raise AssertionError("Could not determine uv version")
-    version = version_line.split()[0]
+    # uv --version output is like: "uv 0.6.10"
+    parts = version_line.split()
+    if len(parts) < 2:
+        raise AssertionError(f"Unexpected uv version output: {version_line}")
+    version = parts[1]
     major, minor, patch = (int(x) for x in version.split("."))
     if (major, minor, patch) < (0, 6, 7):
         raise AssertionError(f"uv version {version} is less than 0.6.7")
