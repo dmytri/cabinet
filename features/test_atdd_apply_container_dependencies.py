@@ -32,3 +32,7 @@ def _():
     output = subprocess.check_output(["uv", "pip", "show", "poethepoet"], text=True)
     assert "Name: poethepoet" in output
 
+@when("pyinfra is required")
+def _():
+    output = subprocess.check_output(["uv", "pip", "show", "pyinfra"], text=True)
+    assert "Name: pyinfra" in output
