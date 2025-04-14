@@ -1,4 +1,4 @@
-FROM alpine:3.21.3
+FROM caddy
 
 RUN apk add --no-cache openssh openrc
 

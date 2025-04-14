@@ -2,6 +2,7 @@
 TESTS = [
     "test_bda_stub.py",
     "test_atdd_apply_container_dependencies.py",
+    "test_atdd_hello_world_site.py",
     "test_atdd_stub.py"
 ]
 
