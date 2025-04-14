@@ -4,6 +4,4 @@ auto-test: false
 test-cmd: "uv run poe dev"
 
 read:
-  - conventions_python.md
-  - conventions_bda_atdd.md
-  - conventions_code_setup.md
+  - README_CONVENTIONS.md
