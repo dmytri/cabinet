@@ -127,34 +127,13 @@ prompts:
 
 # === <bdd_stubs> ===
 bdd_stubs:
-  rule: >
-    Whenever a new BDA or ATDD scenario is added in a .feature file,
-    corresponding Python step definitions must be created in the tests/ directory.
-    Each Given/When/Then step in the feature file must have a matching Python function
-    decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
-    All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must be named _ (underscore).
-    The test function decorated with @scenario should also be marked as skipped with pytest.skip("not implemented").
-    This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
-
-  example: |
-    from pytest_bdd import scenario, given, when, then
-    import pytest
-
-    @scenario("bda_example.feature", "Example scenario")
-    def test_bda_example():
-        pytest.skip("not implemented")
-
-    @given("some precondition")
-    def _():
-        pytest.skip("not implemented")
-
-    @when("an action occurs")
-    def _():
-        pytest.skip("not implemented")
-
-    @then("an outcome is verified")
-    def _():
-        pytest.skip("not implemented")
+  rules:
+    - Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file(s).
+    - Whenever a new BDA or ATDD scenario is added in a .feature file, corresponding Python step definitions must be created in the tests/ directory.
+    - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
+    - All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must be named _ (underscore).
+    - The test function decorated with @scenario should also be marked as skipped with skip("not implemented") (import skip from pytest at the top).
+    - This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
 # === </bdd_stubs> ===
 
 # === <test_ordering> ===
