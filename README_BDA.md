@@ -31,12 +31,6 @@ atdd
     - All Python test files for ATDD must be in features/ with no subdirectories and must start with test_atdd_ (e.g., test_atdd_login.py) to comply with pytest conventions.
     - Must not include BDA tags (@dev, @ci, @prod).
 
-prompts:
-  - input: Generate a BDA scenario for adding a Redis service
-    context: Use a file named bda_add_redis.feature in the tests/ directory
-  - input: Add an ATDD scenario for user registration
-    context: Use a file named atdd_user_registration.feature with Given/When/Then steps
-
 bdd_stubs:
   rules:
     - **MANDATORY:** Every pytest-bdd test file must include BOTH an `@scenarios("feature_file.feature")` decorator at the top AND an individual `@scenario("feature_file.feature", "Scenario name")` decorator for each scenario. This applies even if there is only one scenario in the feature file.
@@ -45,18 +39,6 @@ bdd_stubs:
     - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, named _ (underscore).
     - All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must call skip("not implemented") in their body (import skip from pytest at the top).
     - This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
-  rationale: |
-    Including BOTH `@scenarios` and individual `@scenario` decorators ensures:
-      - All scenarios are auto-discovered and listed by pytest-bdd.
-      - Consistency and future-proofing as more scenarios are added.
-      - No scenario is missed due to omission or copy-paste errors.
-  checklist: |
-    - [ ] File includes `@scenarios("feature_file.feature")`
-    - [ ] File includes `@scenario(...)` for each scenario
-    - [ ] No function body after `@scenarios` or `@scenario`
-    - [ ] All step functions call `skip("not implemented")`
-  warning: |
-    **Warning:** Omitting `@scenarios` will result in incomplete test discovery and is a violation of project conventions.
   example: |
     from pytest import skip
     from pytest_bdd import scenarios, scenario, given
