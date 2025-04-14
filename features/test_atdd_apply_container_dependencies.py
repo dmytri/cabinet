@@ -1,9 +1,7 @@
-from pytest_bdd import scenario, given, when, then
+from pytest_bdd import scenario, when, then
 import pytest
 
 @scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
-def _():
-    pytest.skip("not implemented")
 
 @when("python >= 3.12 is required")
 def _():

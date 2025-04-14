@@ -1,10 +1,10 @@
-@atdd
 Feature: Apply container test dependencies
 
+  @atdd
   Scenario: Apply container has dependencies
     When python >= 3.12 is required
-     and uv is required
-     and pytest is required
-     and poethepoet is optional
+     And uv is required
+     And pytest is required
+     And poethepoet is optional
     Then python is supported version
-     and only required or optional packages are present
+     And only required or optional packages are present

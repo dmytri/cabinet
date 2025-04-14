@@ -20,11 +20,11 @@ def pytest_collection_modifyitems(items):
 
     items.sort(key=sort_key)
 
-def pytest_bdd_before_scenario(request, feature, scenario):
+def pytest_bdd_before_scenario(scenario):
     print(f"\n\033[34mScenario: {scenario.name}\033[0m")
 
-def pytest_bdd_after_step(request, feature, scenario, step, step_func, step_func_args):
+def pytest_bdd_after_step(step):
     print(f"\033[32m ✅ Step passed: {step.name}\033[0m")
 
-def pytest_bdd_step_error(request, feature, scenario, step, step_func, step_func_args, exception):
+def pytest_bdd_step_error(step):
     print(f"\033[31m 💥 Step failed: {step.name}\033[0m")
