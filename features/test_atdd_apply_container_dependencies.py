@@ -1,17 +1,28 @@
+import pytest
+import sys
+import subprocess
 from pytest import skip
-from pytest_bdd import scenarios, scenario, given, when, then
+from pytest_bdd import scenarios, given, when, then
 
 @scenarios("atdd_apply_container_dependencies.feature")
-
-@scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
+def _():
+    pass
 
 @when("python >= 3.12")
 def _():
-    skip("not implemented")
+    assert sys.version_info >= (3, 12), "Python version must be 3.12 or greater"
 
 @when("uv >= 0.6.7")
 def _():
-    skip("not implemented")
+    try:
+        result = subprocess.run(["uv", "--version"], capture_output=True, text=True, check=True)
+        uv_version = result.stdout.strip()
+        uv_version = tuple(map(int, uv_version.split(".")))
+        assert uv_version >= (0, 6, 7), f"uv version must be >= 0.6.7, but is {uv_version}"
+    except FileNotFoundError:
+        pytest.fail("uv is not installed")
+    except Exception as e:
+        pytest.fail(f"Failed to check uv version: {e}")
 
 @when("pytest is required")
 def _():
