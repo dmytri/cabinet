@@ -1,6 +1,7 @@
 from pytest import skip
-from pytest_bdd import scenario, given, when, then
+from pytest_bdd import scenarios, scenario, given, when, then
 
+@scenarios("atdd_apply_container_dependencies.feature")
 @scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
 def _():
     skip("not implemented")
