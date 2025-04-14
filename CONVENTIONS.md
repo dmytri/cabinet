@@ -146,11 +146,7 @@ language:
 # === </hello> ===
 hello:
   - When I say hello, follow this sequence
-      - confirm you sill STOP and do nothing more after this sequence
-      - summerize most important conventions
-      - after tests are run:
-          - If there are failing scenarios, ask me if I want help fixing them, don't fix unless asked.
-          - If not, and there are skipped scenarios, ask me if we should start implementing the first skipped one.
-          - Otherwise, ask if you should help create a new scenario.
-      - STOP
+    - confirm what you understand from these conventions
+    - say what you don't undertand or can't do
+    - stop and don't do anything else
 # === </hello> ===
