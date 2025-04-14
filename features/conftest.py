@@ -1,4 +1,4 @@
-# Define the list of test filenames to include and the order to run them
+
 TESTS = [
     "test_bda_stub.py",
     "test_atdd_apply_container_dependencies.py",
@@ -6,15 +6,9 @@ TESTS = [
 ]
 
 def pytest_ignore_collect(path):
-    """
-    Skip collecting any file not explicitly listed in TESTS.
-    """
     return path.basename not in TESTS
 
 def pytest_collection_modifyitems(items):
-    """
-    Sort collected items to match the order of TESTS.
-    """
     def sort_key(item):
         return (TESTS.index(item.fspath.basename), item.nodeid)
 

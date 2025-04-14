@@ -15,10 +15,7 @@ cmd = "pytest -xsvm 'atdd or ci and not skip' --tb=long features/"
 markers = [
   "dev",
   "ci",
-  "stage",
-  "prod",
-  "atdd",
-  "skip"
+  "atdd"
 ]
 
 filterwarnings = [

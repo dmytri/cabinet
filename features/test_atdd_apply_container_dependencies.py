@@ -4,12 +4,6 @@ from pytest import skip
 scenarios("atdd_apply_container_dependencies.feature")
 
 @scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
-def _():
-    skip("not implemented")
-
-@given("the apply container is running")
-def _():
-    skip("not implemented")
 
 @when("python >= 3.12 is required")
 def _():
