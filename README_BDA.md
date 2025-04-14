@@ -33,7 +33,7 @@ atdd
 
 bdd_stubs:
   rules:
-    - **MANDATORY:** Every pytest-bdd test file must include BOTH an `@scenarios("feature_file.feature")` decorator at the top AND an individual `@scenario("feature_file.feature", "Scenario name")` decorator for each scenario. This applies even if there is only one scenario in the feature file.
+    - **MANDATORY:** Every pytest-bdd test file must include BOTH `scenarios("feature_file.feature")` and an individual `@scenario("feature_file.feature", "Scenario name")` decorator for each scenario. This applies even if there is only one scenario in the feature file.
     - Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file.
     - Each pytest-bdd test file must also include an @scenario decorator for each scenario in the feature file, but neither @scenarios nor @scenario should be followed by a function definition.
     - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, named _ (underscore).
