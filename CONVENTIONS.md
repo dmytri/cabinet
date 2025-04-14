@@ -146,9 +146,11 @@ language:
 # === </hello> ===
 hello:
   - When I say hello, follow this sequence
-      - explain priority_rules to ensure compliance.
-      - run the tests.
-      - If there are failing scenarios, ask me if I want help fixing them.
-      - If not, and there are skipped scenarios, ask me if we should start implementing the first skipped one.
-      - Otherwise, ask if you should help create a new scenario.
+      - confirm you sill STOP and do nothing more after this sequence
+      - summerize most important conventions
+      - after tests are run:
+          - If there are failing scenarios, ask me if I want help fixing them, don't fix unless asked.
+          - If not, and there are skipped scenarios, ask me if we should start implementing the first skipped one.
+          - Otherwise, ask if you should help create a new scenario.
+      - STOP
 # === </hello> ===
