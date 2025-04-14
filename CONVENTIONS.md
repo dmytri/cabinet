@@ -1,14 +1,7 @@
-# === <priority_rules> ===
-priority_rules:
-  - CRITICAL: Never suggest or make any code changes in response to test output unless the user explicitly requests a fix or modification.
-  - If a user request is ambiguous or does not clearly ask for a code change, always ask for clarification before suggesting or making any code changes.
-  - This rule overrides all other conventions and applies to all files, code, and documentation.
-# === </priority_rules> ===
-
 # === <prompt> ===
 prompt: >
-  You are a coding assistant. Follow all rules below when generating or editing code.
-  Follow these conventions for code development, testing, and infrastructure.
+  - Follow these conventions for code development, testing, and infrastructure.
+  - CRITICAL: Never suggest or make any code changes in response to test output unless the user explicitly requests a fix or modification.
 # === </prompt> ===
 
 # === <commit> ===
@@ -106,7 +99,7 @@ setup:
     All test steps run in the Apply container as a Kubernetes job.
 # === </setup> ===
 
-# === <critical> ===
+# === <local_setup> ===
 critical:
   must:
     - Host must already have Tilt, Minikube, Python, and uv installed
@@ -115,7 +108,7 @@ critical:
   must_not:
     - Install Python packages outside the dependency system
     - Bypass Tilt for Kubernetes operations
-# === </critical> ===
+# === </local_setup> ===
 
 # === <prompt_examples> ===
 prompts:
@@ -128,7 +121,7 @@ prompts:
 # === <bdd_stubs> ===
 bdd_stubs:
   rules:
-    - Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file(s).
+    - Important: Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file.
     - Whenever a new BDA or ATDD scenario is added in a .feature file, corresponding Python step definitions must be created in the tests/ directory.
     - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
     - All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must be named _ (underscore).
