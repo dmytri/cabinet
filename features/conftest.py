@@ -2,7 +2,7 @@
 TESTS = [
     "test_bda_stub.py",
     "test_atdd_apply_container_dependencies.py",
-    "test_atdd_example.py"
+    "test_atdd_stub.py"
 ]
 
 def pytest_ignore_collect(path):
