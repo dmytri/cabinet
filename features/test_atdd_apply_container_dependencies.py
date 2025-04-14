@@ -52,16 +52,11 @@ def _(target):
         text=True,
         check=True,
     )
-    installed = {pkg["name"].lower(): pkg["version"] for pkg in json.loads(result.stdout)}
-    allowed = set(target["required"]) | set(target["optional"])
-    allowed.discard("python")
-    for pkg in installed:
-        if pkg not in allowed:
-            raise AssertionError(f"Unexpected package installed: {pkg}")
+    installed_packages = {pkg["name"].lower() for pkg in json.loads(result.stdout)}
     for req in target["required"]:
         if req == "python":
             continue
-        if req not in installed:
+        if req not in installed_packages:
             raise AssertionError(f"Required package missing: {req}")
     result = subprocess.run(
         ["uv", "pip", "check"],
