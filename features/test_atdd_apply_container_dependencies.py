@@ -1,4 +1,5 @@
-from pytest_bdd import scenarios, when, then, fixture
+from pytest_bdd import scenarios, when, then
+from pytest import fixture
 import subprocess
 import json
 
