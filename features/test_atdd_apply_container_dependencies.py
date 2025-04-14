@@ -24,7 +24,7 @@ def _(required):
     ), "Python version is less than 3.12 or could not be determined"
     required.append("python")
 
-@when("uv is required")
+@when("uv is >= 0.6.7")
 def _(required):
     result = subprocess.run(
         ["uv", "--version"],
@@ -35,6 +35,10 @@ def _(required):
     version_line = result.stdout.strip() or result.stderr.strip()
     if not version_line:
         raise AssertionError("Could not determine uv version")
+    version = version_line.split()[0]
+    major, minor, patch = (int(x) for x in version.split("."))
+    if (major, minor, patch) < (0, 6, 7):
+        raise AssertionError(f"uv version {version} is less than 0.6.7")
     required.append("uv")
 
 @when("pytest is required")
