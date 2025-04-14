@@ -1,3 +1,4 @@
+import sys
 from pytest import skip
 from pytest_bdd import scenarios, scenario, when
 
@@ -7,7 +8,6 @@ scenarios("atdd_apply_container_dependencies.feature")
 
 @when("python >= 3.12")
 def _():
-    import sys
     assert sys.version_info >= (3, 12)
 
 @when("uv >= 0.6.7")
