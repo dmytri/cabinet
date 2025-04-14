@@ -12,7 +12,11 @@ def _():
 
 @when("uv >= 0.6.7")
 def _():
-    skip("not implemented")
+    import subprocess
+    output = subprocess.check_output(["uv", "--version"], text=True)
+    version_str = output.strip().split()[0]
+    version_tuple = tuple(int(x) for x in version_str.split("."))
+    assert version_tuple >= (0, 6, 7)
 
 @when("pytest is required")
 def _():
