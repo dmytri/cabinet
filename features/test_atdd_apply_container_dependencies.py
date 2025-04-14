@@ -1,4 +1,4 @@
-from pytest_bdd import scenarios, when
+from pytest_bdd import scenarios, when, given
 import sys
 
 scenarios("atdd_apply_container_dependencies.feature")
