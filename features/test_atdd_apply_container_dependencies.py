@@ -13,7 +13,7 @@ OPTIONAL_PACKAGES = {
     "poethepoet": None,
 }
 
-def _get_uv_pip_version():
+def _get_python_version_from_uv():
     result = subprocess.run(
         ["uv", "pip", "--version"],
         capture_output=True,
@@ -22,15 +22,9 @@ def _get_uv_pip_version():
     )
     # Example output: "uv, version 0.1.36 (using Python 3.12.1)"
     for line in result.stdout.splitlines():
-        if "Python" in line:
-            return line
-    return ""
-
-def _get_python_version_from_uv():
-    line = _get_uv_pip_version()
-    # Extract version after "Python "
-    if "Python" in line:
-        return line.split("Python")[-1].strip(" )\n")
+        if "using Python" in line:
+            # Extract version after "using Python "
+            return line.split("using Python")[-1].strip(" )\n")
     return ""
 
 def _get_installed_packages():
