@@ -1,18 +1,20 @@
-from pytest_bdd import scenario, given, when, then
-import pytest
+from pytest_bdd import scenarios, scenario, given, when, then
+from pytest import skip
+
+scenarios("bda_stub.feature")
 
 @scenario("bda_stub.feature", "Stub BDA test to ensure CI passes")
 def _():
-    pytest.skip("not implemented")
+    skip("not implemented")
 
 @given("the system is initialized")
 def _():
-    pytest.skip("not implemented")
+    skip("not implemented")
 
 @when("no action is taken")
 def _():
-    pytest.skip("not implemented")
+    skip("not implemented")
 
 @then("the test passes")
 def _():
-    pytest.skip("not implemented")
+    skip("not implemented")
