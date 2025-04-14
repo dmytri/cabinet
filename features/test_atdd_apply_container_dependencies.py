@@ -9,7 +9,7 @@ scenarios("atdd_apply_container_dependencies.feature")
 def required():
     return []
 
-@when("python >= 3.12 is required")
+@when("python >= 3.12")
 def _(required):
     result = subprocess.run(
         ["uv", "run", "python", "--version"],
