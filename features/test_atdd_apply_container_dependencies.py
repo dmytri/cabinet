@@ -20,11 +20,13 @@ def _get_python_version_from_uv():
         text=True,
         check=True,
     )
-    # Example output: "uv, version 0.1.36 (using Python 3.12.1)"
+    # Accept both "using Python" and "Python" in output for robustness
     for line in result.stdout.splitlines():
         if "using Python" in line:
-            # Extract version after "using Python "
             return line.split("using Python")[-1].strip(" )\n")
+        if "Python" in line:
+            # fallback: extract after "Python"
+            return line.split("Python")[-1].strip(" )\n")
     return ""
 
 def _get_installed_packages():
