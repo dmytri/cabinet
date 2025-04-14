@@ -69,6 +69,25 @@ def _(required):
     if (major, minor) < (3, 12):
         raise AssertionError(f"Python version {version} is less than 3.12")
 
+@then("uv is supported version")
+def _(required):
+    result = subprocess.run(
+        ["uv", "--version"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    version_line = result.stdout.strip() or result.stderr.strip()
+    if not version_line:
+        raise AssertionError("Could not determine uv version")
+    parts = version_line.split()
+    if len(parts) < 2:
+        raise AssertionError(f"Unexpected uv version output: {version_line}")
+    version = parts[1]
+    major, minor, patch = (int(x) for x in version.split("."))
+    if (major, minor, patch) < (0, 6, 7):
+        raise AssertionError(f"uv version {version} is less than 0.6.7")
+
 @then("only required packages are present")
 def _(required):
     result = subprocess.run(
