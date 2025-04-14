@@ -88,7 +88,7 @@ def _(required):
     if (major, minor, patch) < (0, 6, 7):
         raise AssertionError(f"uv version {version} is less than 0.6.7")
 
-@then("only required packages are present")
+@then("only required or optional packages are present")
 def _(required):
     result = subprocess.run(
         ["uv", "pip", "list", "--format", "json"],
