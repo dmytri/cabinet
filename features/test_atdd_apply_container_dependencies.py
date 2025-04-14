@@ -24,7 +24,7 @@ def _(required):
     ), "Python version is less than 3.12 or could not be determined"
     required.append("python")
 
-@when("uv >= 0.6.7")
+@when("uv is >= 0.6.7")
 def _(required):
     result = subprocess.run(
         ["uv", "run", "uv", "--version"],
