@@ -121,12 +121,21 @@ prompts:
 # === <bdd_stubs> ===
 bdd_stubs:
   rules:
-    - Important: Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file.
-    - Whenever a new BDA or ATDD scenario is added in a .feature file, corresponding Python step definitions must be created in the tests/ directory.
-    - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, even if the function body is a stub.
-    - All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must be named _ (underscore).
-    - The test function decorated with @scenario should also be marked as skipped with skip("not implemented") (import skip from pytest at the top).
+    - Each pytest-bdd test file must start with an @scenarios decorator referencing its feature file.
+    - Each pytest-bdd test file must also include an @scenario decorator for each scenario in the feature file, but neither @scenarios nor @scenario should be followed by a function definition.
+    - Each Given/When/Then step in the feature file must have a matching Python function decorated with @given, @when, or @then from pytest-bdd, named _ (underscore).
+    - All Python functions decorated with @given, @when, or @then for BDA or ATDD scenarios must call skip("not implemented") in their body (import skip from pytest at the top).
     - This ensures that all scenarios are discoverable and runnable by pytest-bdd, and that unimplemented steps are clearly indicated.
+  example: |
+    from pytest import skip
+    from pytest_bdd import scenarios, scenario, given
+
+    scenarios("feature_file.feature")
+    scenario("feature_file.feature", "Scenario name")
+
+    @given("step")
+    def _():
+        skip("not implemented")
 # === </bdd_stubs> ===
 
 # === <test_ordering> ===
