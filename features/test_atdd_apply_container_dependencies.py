@@ -6,16 +6,11 @@ import json
 scenarios("atdd_apply_container_dependencies.feature")
 
 @fixture
-def target():
-    return {
-        "required": set(),
-        "optional": set(),
-        "python_checked": False,
-        "uv_checked": False,
-    }
+def required():
+    return []
 
 @when("python >= 3.12 is required")
-def _(target):
+def _(required):
     result = subprocess.run(
         ["uv", "run", "python", "--version"],
         capture_output=True,
@@ -27,10 +22,10 @@ def _(target):
         version_line.lower().startswith("python ") and
         tuple(map(int, version_line.split(" ")[1].split(".")[:2])) >= (3, 12)
     ), "Python version is less than 3.12 or could not be determined"
-    target["python_checked"] = True
+    required.append("python")
 
 @when("uv is required")
-def _(target):
+def _(required):
     result = subprocess.run(
         ["uv", "--version"],
         capture_output=True,
@@ -40,18 +35,18 @@ def _(target):
     version_line = result.stdout.strip() or result.stderr.strip()
     if not version_line:
         raise AssertionError("Could not determine uv version")
-    target["uv_checked"] = True
+    required.append("uv")
 
 @when("pytest is required")
-def _(target):
-    target["required"].add("pytest")
+def _(required):
+    required.append("pytest")
 
-@when("poethepoet is optional")
-def _(target):
-    target["optional"].add("poethepoet")
+@when("poethepoet is required")
+def _(required):
+    required.append("poethepoet")
 
 @then("python is supported version")
-def _(target):
+def _(required):
     result = subprocess.run(
         ["uv", "run", "python", "--version"],
         capture_output=True,
@@ -66,8 +61,8 @@ def _(target):
     if (major, minor) < (3, 12):
         raise AssertionError(f"Python version {version} is less than 3.12")
 
-@then("only required or optional packages are present")
-def _(target):
+@then("only required packages are present")
+def _(required):
     result = subprocess.run(
         ["uv", "pip", "list", "--format", "json"],
         capture_output=True,
@@ -75,7 +70,9 @@ def _(target):
         check=True,
     )
     installed_packages = {pkg["name"].lower() for pkg in json.loads(result.stdout)}
-    for req in target["required"]:
+    for req in required:
+        if req == "python" or req == "uv":
+            continue
         if req not in installed_packages:
             raise AssertionError(f"Required package missing: {req}")
     result = subprocess.run(
