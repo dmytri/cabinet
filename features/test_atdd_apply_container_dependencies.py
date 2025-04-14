@@ -2,9 +2,8 @@ from pytest import skip
 from pytest_bdd import scenarios, scenario, when
 
 scenarios("atdd_apply_container_dependencies.feature")
+
 @scenario("atdd_apply_container_dependencies.feature", "Apply container has dependencies")
-def _():
-    pass
 
 @when("python >= 3.12")
 def _():
