@@ -20,8 +20,10 @@ def _():
 
 @when("pytest is required")
 def _():
-    skip("not implemented")
+    output = subprocess.check_output(["uv", "pip", "show", "pytest"], text=True)
+    assert "Name: pytest" in output
 
 @when("poethepoet is required")
 def _():
-    skip("not implemented")
+    output = subprocess.check_output(["uv", "pip", "show", "poethepoet"], text=True)
+    assert "Name: poethepoet" in output
