@@ -23,12 +23,10 @@ def _(target):
         check=True,
     )
     version_line = result.stdout.strip() or result.stderr.strip()
-    if not version_line.lower().startswith("python "):
-        raise AssertionError("Could not determine Python version from uv")
-    version = version_line.split(" ")[1]
-    major, minor, *_ = (int(x) for x in version.split("."))
-    if (major, minor) < (3, 12):
-        raise AssertionError(f"Python version {version} is less than 3.12")
+    assert (
+        version_line.lower().startswith("python ") and
+        tuple(map(int, version_line.split(" ")[1].split(".")[:2])) >= (3, 12)
+    ), "Python version is less than 3.12 or could not be determined"
     target["python_checked"] = True
 
 @when("uv is required")
