@@ -1,4 +1,3 @@
-import pytest
 from pytest import skip
 from pytest_bdd import scenario, given, when, then
 
