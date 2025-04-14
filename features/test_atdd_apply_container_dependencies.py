@@ -7,7 +7,8 @@ scenarios("atdd_apply_container_dependencies.feature")
 
 @when("python >= 3.12")
 def _():
-    skip("not implemented")
+    import sys
+    assert sys.version_info >= (3, 12)
 
 @when("uv >= 0.6.7")
 def _():
