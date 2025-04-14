@@ -52,6 +52,22 @@ def _(target):
 def _(target):
     target["optional"].add("poethepoet")
 
+@then("python is supported version")
+def _(target):
+    result = subprocess.run(
+        ["uv", "run", "python", "--version"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    version_line = result.stdout.strip() or result.stderr.strip()
+    if not version_line.lower().startswith("python "):
+        raise AssertionError("Could not determine Python version from uv")
+    version = version_line.split(" ")[1]
+    major, minor, *_ = (int(x) for x in version.split("."))
+    if (major, minor) < (3, 12):
+        raise AssertionError(f"Python version {version} is less than 3.12")
+
 @then("only required or optional packages are present")
 def _(target):
     result = subprocess.run(
