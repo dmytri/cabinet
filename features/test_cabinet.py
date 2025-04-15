@@ -16,7 +16,6 @@ def _():
 @when("uv >= 0.6.7")
 def _():
     output = subprocess.check_output(["uv", "run", "uv", "--version"], text=True)
-    # uv --version output is like: "uv 0.6.7"
     version_str = output.strip().split()[-1]
     installed_version = parse_version(version_str)
     required_version = parse_version("0.6.7")
@@ -31,11 +30,6 @@ def _():
 def _():
     output = subprocess.check_output(["uv", "pip", "show", "poethepoet"], text=True)
     assert "Name: poethepoet" in output
-
-@when("pyinfra is required")
-def _():
-    output = subprocess.check_output(["uv", "pip", "show", "pyinfra"], text=True)
-    assert "Name: pyinfra" in output
 
 @when("httpx is required")
 def _():

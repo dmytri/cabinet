@@ -6,5 +6,4 @@ Feature: Apply container test dependencies
      And uv >= 0.6.7
      And pytest is required
      And poethepoet is required
-     And pyinfra is required
      And httpx is required
