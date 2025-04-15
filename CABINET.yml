@@ -5,14 +5,17 @@ cabinet: >
 
 tests:
   - path: test_cabinet.py
-    description: "Test Cabinet enviroment"
+    kind: cabinet
+    feature: features/cabinet.feature
+    description: "Test Cabinet environment"
 
-  - path: test_bda_stub.py
-    description: "Test for BDA stub functionality"
+  - path: test_bda_hello_world.py
+    kind: bda
+    feature: features/bda_hello_world.feature
+    description: "Provision resources for BDA hello_world service"
 
   - path: test_atdd_hello_world_site.py
-    description: "Test for Hello World site in ATDD"
-
-  - path: test_atdd_stub.py
-    description: "Test for ATDD stub functionality"
+    kind: atdd
+    feature: features/hello_world_site.feature
+    description: "Acceptance tests for Hello World site in ATDD"
 
