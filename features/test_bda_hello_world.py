@@ -1,18 +1,24 @@
-from pytest_bdd import scenarios, scenario, given, when, then
 from pytest import skip
+from pytest_bdd import scenarios, scenario, given, when, then
 
 scenarios("bda_hello_world.feature")
 
-@scenario("bda_hello_world.feature", "Stub BDA test to ensure CI passes")
+@scenario("bda_hello_world.feature", "Publish application image to GitHub Container Registry")
+def test_publish_image():
+    pass
 
-@given("the system is initialized")
+@given("credentials for the GitHub Container Registry are available")
 def _():
     skip("not implemented")
 
-@when("no action is taken")
+@when("the application Docker image is built")
 def _():
     skip("not implemented")
 
-@then("the test passes")
+@when("the image is pushed to the GitHub Container Registry")
+def _():
+    skip("not implemented")
+
+@then("the image is available in the registry")
 def _():
     skip("not implemented")
