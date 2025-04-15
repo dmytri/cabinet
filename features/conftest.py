@@ -2,7 +2,7 @@
 import yaml
 
 # Load test files from the YAML configuration
-with open("CABINET.yml", "r") as file:
+with open("CABINET.yaml", "r") as file:
     TESTS = [test["path"] for test in yaml.safe_load(file)["tests"]]
 
 def pytest_ignore_collect(path):

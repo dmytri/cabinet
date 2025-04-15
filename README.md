@@ -7,7 +7,7 @@
 
 A BDA Cabinet (trick.ca/binet) is an orchestrated automation environment, managed by Tilt, that runs declarative test and provisioning scenarios using Behaviour-Driven techniques. It expresses provisioning, validation, and monitoring as Gherkin-defined behaviours, creating a self-describing and self-testing system.
 
-Standard phases, ordered explicitly in `CABINET.yml`, typically include:
+Standard phases, ordered explicitly in `CABINET.yaml`, typically include:
 - **cabinet:** Verifies the environment (e.g., tools, connectivity). Read-only.
 - **bda:** Provisions the system using executable scenarios. **Mutable (causes side effects).**
 - **atdd:** Validates system features and behaviour against acceptance criteria. Read-only.

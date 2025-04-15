@@ -10,7 +10,7 @@ summary: >
   It is a self-describing and self-testing system built with executable BDD
   scenarios.
 
-  Phases are ordered explicitly in CABINET.yml: cabinet (verifies environment),
+  Phases are ordered explicitly in CABINET.yaml: cabinet (verifies environment),
   bda (provisions system), atdd (validates features), bdm (monitors behaviour).
 
   Only BDA steps cause side effects.
@@ -96,4 +96,4 @@ bdd_stubs:
 
 test_ordering:
   rules:
-    - Tests must be declared in CABINET.yml in desired execution order.
+    - Tests must be declared in CABINET.yaml in desired execution order.
