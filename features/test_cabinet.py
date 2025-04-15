@@ -36,3 +36,8 @@ def _():
 def _():
     output = subprocess.check_output(["uv", "pip", "show", "pyinfra"], text=True)
     assert "Name: pyinfra" in output
+
+@when("httpx is required")
+def _():
+    output = subprocess.check_output(["uv", "pip", "show", "httpx"], text=True)
+    assert "Name: httpx" in output
