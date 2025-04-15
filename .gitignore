@@ -10,3 +10,4 @@ wheels/
 .venv
 .aider*
 !.aider.conf.yml
+quay-config.json
