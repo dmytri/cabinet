@@ -1,10 +1,9 @@
 
-TESTS = [
-    "test_bda_stub.py",
-    "test_atdd_apply_container_dependencies.py",
-    "test_atdd_hello_world_site.py",
-    "test_atdd_stub.py"
-]
+import yaml
+
+# Load test files from the YAML configuration
+with open("CABINET.yml", "r") as file:
+    TESTS = [test["path"] for test in yaml.safe_load(file)["tests"]]
 
 def pytest_ignore_collect(path):
     return path.basename not in TESTS

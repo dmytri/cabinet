@@ -1,0 +1,18 @@
+cabinet: >
+  trick.ca/binet
+
+  This is a template cabinet with an hello world website example
+
+tests:
+  - path: test_bda_stub.py
+    description: "Test for BDA stub functionality"
+
+  - path: test_atdd_apply_container_dependencies.py
+    description: "Test for applying container dependencies in ATDD"
+
+  - path: test_atdd_hello_world_site.py
+    description: "Test for Hello World site in ATDD"
+
+  - path: test_atdd_stub.py
+    description: "Test for ATDD stub functionality"
+
