@@ -81,8 +81,8 @@ Example commands:
 ## Testing
 
 - All BDA and ATDD scenarios and their step definitions are in the `features/` directory.
-- New test files must be added to the `TESTS` list in `features/conftest.py`.
-- BDA test files (starting with `test_bda_`) must be listed before ATDD test files (starting with `test_atdd_`).
+- Test execution order is strictly defined by the sequence of files listed in `CABINET.yml`.
+- To add a new test file or change the execution order, modify the `tests:` list within `CABINET.yml`. The `features/conftest.py` file reads this configuration to enforce the specified order during test runs.
 
 ## Contributing
 
