@@ -1,7 +1,4 @@
-Feature: BDA Stub Testing
+Feature: Deploy Hello World Site
 
-  @dev
-  Scenario: Stub BDA test to ensure CI passes
-    Given the system is initialized
-    When no action is taken
-    Then the test passes
+  @prod
+  Scenario: Publish image for Target Container
