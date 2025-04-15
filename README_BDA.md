@@ -1,6 +1,19 @@
 summary: >
-  Defines Behaviour-Driven Automation phases for trick.ca/binet.
-  Only BDA steps perform side effects. All others validate behaviour.
+  This is a BDA Cabinet (trick.ca/binet)
+
+  A cabinet is an orchestrated automation environment, managed by Tilt, that
+  runs declarative test and provisioning scenarios.
+
+  Behaviour-Driven Automation (BDA) expresses provisioning, validation, and
+  monitoring as Gherkin-defined behaviours.
+
+  It is a self-describing and self-testing system built with executable BDD
+  scenarios.
+
+  Phases are ordered explicitly in CABINET.yml: cabinet (verifies environment),
+  bda (provisions system), atdd (validates features), bdm (monitors behaviour).
+
+  Only BDA steps cause side effects.
 
 phases:
 
@@ -9,7 +22,7 @@ phases:
     definition: >
       Cabinet tests verify that the test infrastructure (e.g., Python, uv, Tilt) is ready before running BDA.
     file_prefix: cabinet_
-    directory: features/
+    structure: same as ATDD
     rules:
       - Python test files must start with `test_cabinet_` and be in `features/`.
       - Cabinet scenarios must not perform provisioning or monitoring.
@@ -58,11 +71,13 @@ phases:
         Then [assertion]
     file_prefix: bdm_
     directory: features/
+    structure: same as ATDD
     rules:
       - Python test files must start with `test_bdm_`.
       - BDM scenarios must be read-only and executable in live environments.
 
 bdd_stubs:
+  directory: features/
   rules:
     - Every test file must include both `scenarios(...)` and individual `@scenario(...)` decorators.
     - Use `_` as the function name for all step definitions.
