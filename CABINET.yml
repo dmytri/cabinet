@@ -16,6 +16,6 @@ tests:
 
   - path: test_atdd_hello_world_site.py
     kind: atdd
-    feature: features/hello_world_site.feature
+    feature: features/atdd_hello_world_site.feature
     description: "Acceptance tests for Hello World site in ATDD"
 
