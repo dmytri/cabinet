@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build
+spec:
+  ttlSecondsAfterFinished: 60
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: build
+          image: gcr.io/kaniko-project/executor:latest
+          args:
+            - --dockerfile=Dockerfile
+            - --context=dir:///workspace
+            - --destination=quay.io/dmytri/hello_world:latest
+            - --cache=false
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+            - name: docker-config
+              mountPath: /kaniko/.docker
+      volumes:
+        - name: workspace
+          emptyDir: {}
+        - name: docker-config
+          secret:
+            secretName: docker-config-json
+
