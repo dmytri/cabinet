@@ -15,7 +15,7 @@ spec:
       - name: target
         image: target
         ports:
-        - containerPort: 8080
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -24,7 +24,7 @@ metadata:
 spec:
   clusterIP: None
   ports:
-  - port: 8080
+  - port: 80
     targetPort: 8080
   selector:
     app: target

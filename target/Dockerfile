@@ -1,9 +1,9 @@
-FROM caddy
+FROM caddy:alpine
+EXPOSE 80
 
-EXPOSE 8080
-
-# Set the working directory
+RUN mkdir -p /srv && echo "hello world" > /srv/index.html
 WORKDIR /srv
 
-# Start Caddy
-CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+CMD ["caddy", "file-server", "--root", "/srv", "browse"]
+
+

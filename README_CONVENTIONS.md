@@ -6,10 +6,11 @@ agent:
   - Always use Canadian English spelling.
   - HELLO:
       - When I say hello, follow this sequence:
-        - Concisely summerize what you understand as key conventions.
+        - Summerize what you understand as key conventions.
         - State what you don't understand from the conventions or can't do.
         - Suggest how we can improve or clarify conventions.
         - STOP and don't do anything else.
+        - Be very concice, stick to what's important, give me the tldr version.
         - WAIT.
 
 code:

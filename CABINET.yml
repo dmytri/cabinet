@@ -12,7 +12,7 @@ tests:
   - path: test_bda_hello_world.py
     phase: bda
     feature: features/bda_hello_world.feature
-    description: "Provision resources for BDA hello_world service"
+    description: "Publish Image of Hello World th ghcr.io"
 
   - path: test_atdd_hello_world_site.py
     phase: atdd

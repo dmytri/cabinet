@@ -1,6 +1,6 @@
 Feature: Hello World Application Deployment
 
-  @bda @dev @ci
+  @ci
   Scenario: Publish application image to GitHub Container Registry
     Given credentials for the GitHub Container Registry are available
     When the application Docker image is built
