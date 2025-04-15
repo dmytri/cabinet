@@ -109,9 +109,9 @@ All spelling in code, comments, documentation, and user-facing text must use Can
 
 This project uses a unified ruleset for all AI agents and automation logic.
 
-Rules are defined in [`CONVENTIONS.md`](./CONVENTIONS.md), which should be symlinked for agents like Cursor to interpret and enforce.
+Rules are defined in [`README_CONVENTIONS.md`](./README_CONVENTIONS.md), which should be symlinked for agents like Cursor to interpret and enforce.
 
 ```bash
-ln -s CONVENTIONS.md .cursor-rules
+ln -s README_CONVENTIONS.md .cursor-rules
 ```
 
