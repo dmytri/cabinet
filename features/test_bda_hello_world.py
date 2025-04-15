@@ -1,11 +1,9 @@
 from pytest_bdd import scenarios, scenario, given, when, then
 from pytest import skip
 
-scenarios("bda_stub.feature")
+scenarios("bda_hello_world.feature")
 
-@scenario("bda_stub.feature", "Stub BDA test to ensure CI passes")
-def _():
-    skip("not implemented")
+@scenario("bda_hello_world.feature", "Stub BDA test to ensure CI passes")
 
 @given("the system is initialized")
 def _():
