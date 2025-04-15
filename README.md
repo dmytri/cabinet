@@ -5,9 +5,13 @@
 
 **What is a BDA Cabinet?**
 
-A BDA Cabinet (trick.ca/binet) is an orchestrated automation environment, managed by Tilt. It uses Behaviour-Driven techniques to express provisioning, validation, and potentially monitoring as Gherkin-defined behaviours. This creates a self-describing and self-testing system built with executable scenarios.
+A BDA Cabinet (trick.ca/binet) is an orchestrated automation environment, managed by Tilt, that runs declarative test and provisioning scenarios using Behaviour-Driven techniques. It expresses provisioning, validation, and monitoring as Gherkin-defined behaviours, creating a self-describing and self-testing system.
 
-Phases (like provisioning, testing, monitoring) are ordered explicitly in `CABINET.yml`.
+Standard phases, ordered explicitly in `CABINET.yml`, typically include:
+- **cabinet:** Verifies the environment (e.g., tools, connectivity). Read-only.
+- **bda:** Provisions the system using executable scenarios. **Mutable (causes side effects).**
+- **atdd:** Validates system features and behaviour against acceptance criteria. Read-only.
+- **bdm:** Monitors system behaviour continuously (synthetic checks). Read-only.
 
 ---
 
@@ -43,14 +47,16 @@ git push -u origin main
 
 ## Core Concepts & Practices
 
-This cabinet follows specific patterns for automation and testing:
+This cabinet implements specific phases and patterns:
 
-- **Behaviour-Driven Automation (BDA):** Automates system configuration and dependencies using self-describing, scenario-based tests (`bda_*.feature`, `test_bda_*.py`). BDA scenarios describe *how* the system should be provisioned or changed and are the only tests intended to have side effects (mutable).
-- **Acceptance Test-Driven Development (ATDD):** Verifies that system behaviour meets expectations *after* provisioning or changes (`atdd_*.feature`, `test_atdd_*.py`). ATDD scenarios describe *what* the expected behaviour is and must be read-only (immutable).
-- **Declarative Infrastructure:** Supporting infrastructure for development and testing (e.g., the `apply` container) is managed declaratively with Kubernetes manifests and Tilt. BDA steps handle the actual application provisioning.
-- **Defined Test Order:** Test execution order across phases is strictly controlled by `CABINET.yml` (See Testing section).
-- **Tooling:** All tasks are run via `uv` and `poe` (e.g., `uv run poe test`).
-- **File Locations:** All BDD scenarios (`.feature` files) and their corresponding Python step definitions (`test_*.py` files) reside in the `features/` directory.
+- **Phases:** The system utilizes distinct, ordered phases defined in `CABINET.yml` (see overview above). This template primarily includes examples for BDA and ATDD phases.
+- **Behaviour-Driven Automation (BDA):** Corresponds to the `bda` phase. Automates system configuration and dependencies (`bda_*.feature`, `test_bda_*.py`). These are the only steps intended to modify the target system state (mutable).
+- **Acceptance Test-Driven Development (ATDD):** Corresponds to the `atdd` phase. Verifies system behaviour meets expectations (`atdd_*.feature`, `test_atdd_*.py`). These steps must be read-only (immutable).
+- **Other Phases:** While not fully exemplified here, the `cabinet` (environment checks) and `bdm` (monitoring) phases follow the same BDD structure but must also be read-only.
+- **Declarative Infrastructure:** Supporting infrastructure (like the test execution environment) is managed declaratively (Kubernetes manifests, Tilt). BDA steps handle application-specific provisioning.
+- **Defined Test Order:** Test execution order across all phases is strictly controlled by the file sequence in `CABINET.yml` (See Testing section).
+- **Tooling:** All tasks run via `uv` and `poe` (e.g., `uv run poe test`).
+- **File Locations:** All BDD scenarios (`.feature`) and step definitions (`test_*.py`) are in the `features/` directory, prefixed according to their phase (`bda_`, `atdd_`, etc.).
 
 ## Prerequisites
 
