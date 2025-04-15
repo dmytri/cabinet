@@ -49,7 +49,7 @@ git push -u origin main
 
 This cabinet implements specific phases and patterns:
 
-- **Phases:** The system utilizes distinct, ordered phases defined in `CABINET.yml` (see overview above). This template primarily includes examples for BDA and ATDD phases.
+- **Phases:** The system utilizes distinct, ordered phases defined in `CABINET.yml` (see overview above). This template primarily includes examples for BDA and ATDD phases. For detailed definitions and rules for each phase, see `README_BDA.md`.
 - **Behaviour-Driven Automation (BDA):** Corresponds to the `bda` phase. Automates system configuration and dependencies (`bda_*.feature`, `test_bda_*.py`). These are the only steps intended to modify the target system state (mutable).
 - **Acceptance Test-Driven Development (ATDD):** Corresponds to the `atdd` phase. Verifies system behaviour meets expectations (`atdd_*.feature`, `test_atdd_*.py`). These steps must be read-only (immutable).
 - **Other Phases:** While not fully exemplified here, the `cabinet` (environment checks) and `bdm` (monitoring) phases follow the same BDD structure but must also be read-only.
@@ -66,6 +66,8 @@ Before you begin, ensure you have the following installed on your system:
 - [Python](https://www.python.org/)
 - [uv](https://docs.astral.sh/uv/)
 - A Kubernetes cluster (local, e.g., [Minikube](https://minikube.sigs.k8s.io/docs/), [Kind](https://kind.sigs.k8s.io/), or [Docker Desktop with Kubernetes enabled](https://docs.docker.com/desktop/kubernetes/)), or a remote cluster
+
+For more specific setup requirements and critical environment rules, refer to `README_SETUP.md`.
 
 ## Dependency Management
 
