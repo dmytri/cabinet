@@ -3,6 +3,14 @@
 
 > This is a trick.ca/binet Template
 
+**What is a BDA Cabinet?**
+
+A BDA Cabinet (trick.ca/binet) is an orchestrated automation environment, managed by Tilt. It uses Behaviour-Driven techniques to express provisioning, validation, and potentially monitoring as Gherkin-defined behaviours. This creates a self-describing and self-testing system built with executable scenarios.
+
+Phases (like provisioning, testing, monitoring) are ordered explicitly in `CABINET.yml`.
+
+---
+
 Cabinets package entire applications for use across the development lifecycle.
 
 - in dev
@@ -33,19 +41,16 @@ git commit -m "Initial commit from template"
 git push -u origin main
 ```
 
-## Key Practices
+## Core Concepts & Practices
 
-- All code and automation tasks follow Behaviour-Driven Automation (BDA) and Acceptance Test-Driven Development (ATDD) patterns.
-- Supporting infrastructure for development and testing (such as the `apply` container, and optionally others) is managed declaratively with Kubernetes manifests and Tilt. Actual application deployment and provisioning is defined by BDA and may use any system.
-- Testing and provisioning scenarios live in `features/`, with filenames prefixed by `bda_` or `atdd_`.
-- Python test files must be named `test_bda_*.py` for BDA and `test_atdd_*.py` for ATDD.
-- Feature files must be named `bda_*.feature` for BDA and `atdd_*.feature` for ATDD.
-- All tooling runs via `uv` and `poe`, e.g.:
+This cabinet follows specific patterns for automation and testing:
 
-```bash
-uv run poe start      # run app
-uv run poe test       # run tests
-```
+- **Behaviour-Driven Automation (BDA):** Automates system configuration and dependencies using self-describing, scenario-based tests (`bda_*.feature`, `test_bda_*.py`). BDA scenarios describe *how* the system should be provisioned or changed and are the only tests intended to have side effects (mutable).
+- **Acceptance Test-Driven Development (ATDD):** Verifies that system behaviour meets expectations *after* provisioning or changes (`atdd_*.feature`, `test_atdd_*.py`). ATDD scenarios describe *what* the expected behaviour is and must be read-only (immutable).
+- **Declarative Infrastructure:** Supporting infrastructure for development and testing (e.g., the `apply` container) is managed declaratively with Kubernetes manifests and Tilt. BDA steps handle the actual application provisioning.
+- **Defined Test Order:** Test execution order across phases is strictly controlled by `CABINET.yml` (See Testing section).
+- **Tooling:** All tasks are run via `uv` and `poe` (e.g., `uv run poe test`).
+- **File Locations:** All BDD scenarios (`.feature` files) and their corresponding Python step definitions (`test_*.py` files) reside in the `features/` directory.
 
 ## Prerequisites
 
@@ -80,9 +85,9 @@ Example commands:
 
 ## Testing
 
-- All BDA and ATDD scenarios and their step definitions are in the `features/` directory.
 - Test execution order is strictly defined by the sequence of files listed in `CABINET.yml`.
 - To add a new test file or change the execution order, modify the `tests:` list within `CABINET.yml`. The `features/conftest.py` file reads this configuration to enforce the specified order during test runs.
+- Run tests using: `uv run poe test`
 
 ## Contributing
 
