@@ -1,7 +1,8 @@
-cache-prompts: true
 auto-test: false
 
 test-cmd: "uv run poe dev"
 
 read:
   - README_CONVENTIONS.md
+  - README_BDA.md
+  - CABINET.ym
