@@ -29,8 +29,8 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "kubernetes", specifier = ">=32.0.1" },
+    { name = "httpx" },
+    { name = "kubernetes" },
     { name = "poethepoet" },
     { name = "pytest-bdd" },
 ]

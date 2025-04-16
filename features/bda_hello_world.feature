@@ -2,6 +2,7 @@ Feature: BDA | Hello World Application Deployment
 
   Scenario: Publish Image to GitHub Container Registry
     Given Credentials for the GitHub Container Registry are available
+      And Kaniko build image is present
      When Application Docker image is built
       And Image is pushed to the GitHub Container Registry
      Then Image is available in the registry

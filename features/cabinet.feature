@@ -4,7 +4,7 @@ Feature: Apply container test dependencies
   Scenario: Apply container has dependencies
     When python >= 3.12
      And uv >= 0.6.7
-     And pytest is required
+     And pytest-bdd is required
      And poethepoet is required
      And httpx is required
      And kubernetes is required

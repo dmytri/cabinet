@@ -1,6 +1,7 @@
 import os
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
+from kubernetes import client, config, utils
 
 scenarios("bda_hello_world.feature")
 
@@ -8,13 +9,21 @@ scenarios("bda_hello_world.feature")
 
 @given("Credentials for the GitHub Container Registry are available")
 def _():
-    username = os.getenv("GITHUB_USERNAME")
-    token = os.getenv("GITHUB_TOKEN")
-    assert username and token
+    # username = os.getenv("GITHUB_USERNAME")
+    # token = os.getenv("GITHUB_TOKEN")
+    # assert username and token
+    skip("not implemented")
+
+@given("Kaniko build image is present")
+def _():
+    skip("not implemented")
 
 @when("Application Docker image is built")
 def _():
-    skip("not implemented")
+    config.load_kube_config()
+    k8s_client = client.ApiClient()
+    yaml_file = 'build/manifest_build.yaml'
+    utils.create_from_yaml(k8s_client,yaml_file,verbose=True)
 
 @when("Image is pushed to the GitHub Container Registry")
 def _():
