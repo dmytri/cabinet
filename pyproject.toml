@@ -1,28 +1,6 @@
-[project]
-name = "cabinet"
-version = "1.0.0"
-requires-python = ">=3.12"
-
 dependencies = [
   "httpx>=0.28.1",
-  "kubernetes>=32.0.1",
+  "kubernetes>=32.0.1",  # <-- Already here
   "poethepoet",
   "pytest-bdd",
-]
-
-[tool.poe.tasks.dev]
-cmd = "pytest -xsm 'atdd or dev and not skip' --tb=short features/"
-
-[tool.poe.tasks.ci]
-cmd = "pytest -xsvm 'atdd or ci and not skip' --tb=long features/"
-
-[tool.pytest.ini_options]
-markers = [
-  "dev",
-  "ci",
-  "atdd"
-]
-
-filterwarnings = [
-  "ignore::DeprecationWarning"
 ]
