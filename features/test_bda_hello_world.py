@@ -10,7 +10,7 @@ scenarios("bda_hello_world.feature")
 def _():
     username = os.getenv("GITHUB_USERNAME")
     token = os.getenv("GITHUB_TOKEN")
-    assert username and token:
+    assert username and token
 
 @when("Application Docker image is built")
 def _():
