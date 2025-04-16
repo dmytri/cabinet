@@ -1,16 +1,16 @@
+import os
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
 scenarios("bda_hello_world.feature")
 
-# Scenario: Publish Image to GitHub Container Registry
 @scenario("bda_hello_world.feature", "Publish Image to GitHub Container Registry")
-def test_publish_image():
-    pass
 
 @given("Credentials for the GitHub Container Registry are available")
 def _():
-    skip("not implemented")
+    username = os.getenv("GITHUB_USERNAME")
+    token = os.getenv("GITHUB_TOKEN")
+    assert username and token:
 
 @when("Application Docker image is built")
 def _():
