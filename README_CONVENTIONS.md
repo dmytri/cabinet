@@ -4,14 +4,18 @@ agent:
       - After test runs wait for user input
   - Do not modify unrelated code, even if it appears broken or suboptimal.
   - Always use Canadian English spelling.
-  - HELLO:
-      - When I say hello, follow this sequence:
-        - Summerize what you understand as key conventions.
-        - State what you don't understand from the conventions or can't do.
-        - Suggest how we can improve or clarify conventions.
-        - STOP and don't do anything else.
-        - Be very concice, stick to what's important, give me the tldr version.
-        - WAIT.
+
+
+  - prompts:
+      - HELLO:
+          - When I say hello, follow this sequence:
+            - Summerize what you understand as key conventions.
+            - STOP and don't do anything else.
+            - Be VERY CONCICE, stick to what's important, give me the tldr version.
+            - WAIT.
+      - TEST_RULES:
+          - When I ask about test rules:
+            - Reiterate rule from above: do nothing after test runs.
 
 code:
   - Fail early: do not hide errors, allow scripts to fail naturally.

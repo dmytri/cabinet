@@ -1,12 +1,26 @@
 [project]
 name = "cabinet"
-version = "0.1.0"
+version = "1.0.0"
+requires-python = ">=3.12"
+
 dependencies = [
-  "httpx",
-  "kubernetes",
   "poethepoet",
+  "pyinfra",
   "pytest-bdd",
 ]
 
-# Keep other sections like [tool.poe.tasks] if they exist below
-# For now, based on the provided snippet, only the project section is added.
+[tool.poe.tasks.dev]
+cmd = "pytest -xsm 'atdd or dev and not skip' --tb=short features/"
+
+[tool.poe.tasks.ci]
+cmd = "pytest -xsvm 'atdd or ci and not skip' --tb=long features/"
+
+[tool.pytest.ini_options]
+markers = [
+  "dev",
+  "ci",
+  "atdd"
+]
+filterwarnings = [
+  "ignore::DeprecationWarning"
+]
