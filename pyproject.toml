@@ -1,6 +1,12 @@
+[project]
+name = "cabinet"
+version = "0.1.0"
 dependencies = [
   "httpx",
   "kubernetes",
   "poethepoet",
   "pytest-bdd",
 ]
+
+# Keep other sections like [tool.poe.tasks] if they exist below
+# For now, based on the provided snippet, only the project section is added.
