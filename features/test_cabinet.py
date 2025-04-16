@@ -1,6 +1,6 @@
 import sys
 import subprocess
-from packaging.version import parse as parse_version
+from pytest import skip
 from pytest_bdd import scenarios, scenario, when
 
 scenarios("cabinet.feature")
@@ -15,23 +15,36 @@ def _():
 
 @when("uv >= 0.6.7")
 def _():
-    output = subprocess.check_output(["uv", "run", "uv", "--version"], text=True)
-    version_str = output.strip().split()[-1]
-    installed_version = parse_version(version_str)
-    required_version = parse_version("0.6.7")
-    assert installed_version >= required_version
+    result = subprocess.run(["uv", "--version"], capture_output=True, text=True, check=True)
+    version_str = result.stdout.split()[1]
+    version_tuple = tuple(map(int, version_str.split('.')))
+    assert version_tuple >= (0, 6, 7)
 
 @when("pytest is required")
 def _():
-    output = subprocess.check_output(["uv", "pip", "show", "pytest"], text=True)
-    assert "Name: pytest" in output
+    try:
+        import pytest
+    except ImportError:
+        assert False, "pytest is not installed"
 
 @when("poethepoet is required")
 def _():
-    output = subprocess.check_output(["uv", "pip", "show", "poethepoet"], text=True)
-    assert "Name: poethepoet" in output
+    try:
+        import poethepoet
+    except ImportError:
+        assert False, "poethepoet is not installed"
 
 @when("httpx is required")
 def _():
-    output = subprocess.check_output(["uv", "pip", "show", "httpx"], text=True)
-    assert "Name: httpx" in output
+    try:
+        import httpx
+    except ImportError:
+        assert False, "httpx is not installed"
+
+@when("kubernetes is required")
+def _():
+    try:
+        import kubernetes
+    except ImportError:
+        assert False, "kubernetes is not installed"
+

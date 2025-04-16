@@ -7,3 +7,4 @@ Feature: Apply container test dependencies
      And pytest is required
      And poethepoet is required
      And httpx is required
+     And kubernetes is required
