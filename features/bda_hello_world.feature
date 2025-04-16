@@ -1,5 +1,6 @@
 Feature: BDA | Hello World Application Deployment
 
+  @ci
   Scenario: Publish Image to GitHub Container Registry
     Given Credentials for the GitHub Container Registry are available
       And Kaniko build image is present
@@ -7,6 +8,7 @@ Feature: BDA | Hello World Application Deployment
       And Image is pushed to the GitHub Container Registry
      Then Image is available in the registry
 
+  @ci
   Scenario: Proxy /hello requests to a dedicated Bunny pull zone
     Given Bunny API key is available
       And "asym.me" domain is served by a Bunny pull zone
