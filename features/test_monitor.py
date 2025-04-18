@@ -4,8 +4,6 @@ from pytest_bdd import scenarios, scenario, given, when, then
 scenarios("monitor.feature")
 
 @scenario("monitor.feature", "Verify Hello World application is healthy")
-def test_application_health():
-    pass
 
 @given("the Hello World application is deployed")
 def _():
