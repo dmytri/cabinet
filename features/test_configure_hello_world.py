@@ -1,3 +1,4 @@
+import os
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 from kubernetes import client, config, utils
@@ -8,13 +9,11 @@ scenarios("configure_hello_world.feature")
 def test_publish_image():
     pass
 
-# implement this step AI!
 @given("Credentials for the GitHub Container Registry are available")
 def _():
-    # username = os.getenv("GITHUB_USERNAME")
-    # token = os.getenv("GITHUB_TOKEN")
-    # assert username and token
-    pass
+    username = os.getenv("GITHUB_USERNAME")
+    token = os.getenv("GITHUB_TOKEN")
+    assert username and token
 
 @given("Kaniko build image is present")
 def _():
