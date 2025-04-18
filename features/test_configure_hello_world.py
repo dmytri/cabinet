@@ -2,6 +2,11 @@ import os
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 from kubernetes import client, config, utils
+from dotenv import load_dotenv
+
+# Load environment variables specifically from .env.creds
+# You can add load_dotenv() without arguments later if you create a general .env file
+load_dotenv(dotenv_path='.env.creds')
 
 scenarios("configure_hello_world.feature")
 
@@ -13,7 +18,7 @@ def test_publish_image():
 def _():
     username = os.getenv("GITHUB_USERNAME")
     token = os.getenv("GITHUB_TOKEN")
-    assert username and token
+    assert username and token, "GITHUB_USERNAME and GITHUB_TOKEN must be set in the .env.creds file"
 
 @given("Kaniko build image is present")
 def _():
