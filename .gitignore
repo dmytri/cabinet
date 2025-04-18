@@ -8,6 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+.env
 .aider*
 !.aider.conf.yml
 quay-config.json

@@ -7,7 +7,8 @@ dependencies = [
   "poethepoet",
   "pytest-bdd",
   "httpx",
-  "kubernetes"
+  "kubernetes",
+  "python-dotenv"
 ]
 
 [tool.poe.tasks.dev]
