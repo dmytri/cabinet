@@ -19,4 +19,3 @@ Feature: Configure | Hello World Application Deployment
       And TLS for the custom hostname "hello.cdn.asym.me"
       And Edge Rule added on the "asym.me" pull zone to forward "/hello" to "https://hello.cdn.asym.me"
      Then Requests to "asym.me/hello" are served via the "hello" pull zone origin
-

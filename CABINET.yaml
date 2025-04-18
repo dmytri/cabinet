@@ -4,18 +4,23 @@ cabinet: >
   This is a template cabinet with an hello world website example
 
 tests:
-  - path: test_cabinet.py
-    phase: cabinet
-    feature: features/cabinet.feature
-    description: "Test Cabinet environment"
+  - path: test_ready.py
+    phase: ready
+    feature: features/ready.feature
+    description: "Verify dependencies in apply container"
 
-  - path: test_bda_hello_world.py
-    phase: bda
-    feature: features/bda_hello_world.feature
-    description: "Publish Image of Hello World th ghcr.io"
+  - path: test_configure_hello_world.py
+    phase: configure
+    feature: features/configure_hello_world.feature
+    description: "Deploy and configure Hello World application"
 
-  - path: test_atdd_hello_world_site.py
-    phase: atdd
-    feature: features/atdd_hello_world_site.feature
-    description: "Acceptance tests for Hello World site in ATDD"
+  - path: test_accept_hello_world.py
+    phase: accept
+    feature: features/accept_hello_world.feature
+    description: "Acceptance tests for Hello World site"
+
+  - path: test_monitor.py
+    phase: monitor
+    feature: features/monitor.feature
+    description: "Monitor Hello World application health"
 
