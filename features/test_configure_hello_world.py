@@ -8,6 +8,7 @@ scenarios("configure_hello_world.feature")
 def test_publish_image():
     pass
 
+# implement this step AI!
 @given("Credentials for the GitHub Container Registry are available")
 def _():
     # username = os.getenv("GITHUB_USERNAME")
