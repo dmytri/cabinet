@@ -11,16 +11,17 @@ dependencies = [
 ]
 
 [tool.poe.tasks.dev]
-cmd = "pytest -xsm 'atdd or dev and not skip' --tb=short features/"
+cmd = "pytest -xsm 'accept or dev and not skip' --tb=short features/"
 
 [tool.poe.tasks.ci]
-cmd = "pytest -xsvm 'atdd or ci and not skip' --tb=long features/"
+cmd = "pytest -xsvm 'accept or ci and not skip' --tb=long features/"
 
 [tool.pytest.ini_options]
 markers = [
   "dev",
   "ci",
-  "atdd"
+  "accept",
+  "monitor"
 ]
 filterwarnings = [
   "ignore::DeprecationWarning"
