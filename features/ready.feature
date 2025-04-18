@@ -1,6 +1,6 @@
 Feature: Ready | Apply container test dependencies
 
-  @atdd
+  @accept
   Scenario: Dependencies present in apply container
     When python >= 3.12
      And uv >= 0.6.7

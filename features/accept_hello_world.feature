@@ -1,6 +1,6 @@
 Feature: Accept | Basic Hello World Site Verification
 
-  @atdd
+  @accept
   Scenario: Accessing the default Caddy site
     Given the target container is running
     When the user accesses the web server root via HTTP
