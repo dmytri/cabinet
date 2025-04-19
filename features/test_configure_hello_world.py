@@ -9,8 +9,7 @@ scenarios("configure_hello_world.feature")
 def _():
     skip("not implemented")
 
-# replace comments like below with scenario names AI!
-## ~~~
+# --- Steps for Scenario: Publish Image to GitHub Container Registry ---
 
 @given("Credentials for the GitHub Container Registry are available")
 def _():
@@ -37,7 +36,7 @@ def _():
 def _():
     skip("not implemented")
 
-## ~~~
+# --- Steps for Scenario: Proxy /hello requests to a dedicated Bunny pull zone ---
 
 @given("Bunny API key is available")
 def _():
