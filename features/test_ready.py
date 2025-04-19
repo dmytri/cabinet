@@ -2,9 +2,11 @@ import sys
 import subprocess
 from pytest_bdd import scenarios, scenario, when
 
-scenarios("features/ready.feature")
+# Corrected path: removed "features/" prefix
+scenarios("ready.feature")
 
-@scenario("features/ready.feature", "Verify dependencies in apply container")
+# Corrected path: removed "features/" prefix
+@scenario("ready.feature", "Verify dependencies in apply container")
 def test_dependencies_present():
     pass
 
