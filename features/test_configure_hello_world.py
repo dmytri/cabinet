@@ -8,10 +8,12 @@ from dotenv import load_dotenv
 # You can add load_dotenv() without arguments later if you create a general .env file
 load_dotenv(dotenv_path='.env.creds')
 
-scenarios("features/configure_hello_world.feature")
+# Corrected path: removed "features/" prefix
+scenarios("configure_hello_world.feature")
 
 # Scenario: Publish Image to GitHub Container Registry
-@scenario("features/configure_hello_world.feature", "Publish Image to GitHub Container Registry")
+# Corrected path: removed "features/" prefix
+@scenario("configure_hello_world.feature", "Publish Image to GitHub Container Registry")
 def test_publish_image():
     pass
 
@@ -42,7 +44,8 @@ def _():
 
 
 # Scenario: Proxy /hello requests to a dedicated Bunny pull zone
-@scenario("features/configure_hello_world.feature", "Proxy /hello requests to a dedicated Bunny pull zone")
+# Corrected path: removed "features/" prefix
+@scenario("configure_hello_world.feature", "Proxy /hello requests to a dedicated Bunny pull zone")
 def test_proxy_hello_requests():
     pass
 
