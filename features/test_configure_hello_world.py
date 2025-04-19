@@ -66,3 +66,7 @@ def _():
 @then('Requests to "asym.me/hello" are served via the "hello" pull zone origin')
 def _():
     skip("not implemented")
+
+@then("The Hello World Container is running")
+def _():
+    skip("not implemented")
