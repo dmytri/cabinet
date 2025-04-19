@@ -4,8 +4,7 @@
 
 ## Summary
 A **BDA Cabinet** orchestrates the deployment, testing, and monitoring of
-your target application via Behavior‑Driven Automation.
-
+your target application via Behavior‑Driven Automation
 
 ## Glossary
 - **BDA**: Behaviour Driven Automation. Self-describing and self-testing automation using Gherkin Scenarios
@@ -84,9 +83,9 @@ Tilt is responsible for:
 ### BDD Stubs
 - **Directory**: features/
 - **Rules**:
-  - Every test file must include `scenarios("...")` to load tests from the corresponding feature file.
-  - All step definition functions (`@given`, `@when`, `@then`) must use the name `_`.
-  - Stubs should call `skip("not implemented")`.
+  - Every test file must include `scenarios("...")` to load tests from the corresponding feature file
+  - All step definition functions (`@given`, `@when`, `@then`) must use the name `_`
+  - Stubs should call `skip("not implemented")`
 - **Example**:
   ```python
   from pytest import skip
@@ -143,16 +142,16 @@ pytest automatically executes all phases in the exact order specified in this fi
 
 ### ALIGN prompt
 When I ask to "Align" the features, ensure the following:
-1.  **`CABINET.yaml`:** Entries are complete (`path`, `phase`, `feature`, `description`).
+1.  **`CABINET.yaml`:** Entries are complete (`path`, `phase`, `feature`, `description`)
 2.  **all `.feature` Files:**
-    *   Descriptions (Feature/Scenario) align with `CABINET.yaml`.
-        Note: This description is intentionally duplicated for tooling/readability; alignment ensures consistency)
-    *   Scenario tags match phase rules (`README_BDA.md`).
+    *   Descriptions (Feature/Scenario) align with `CABINET.yaml`
+        *   (Note: This description is intentionally duplicated for tooling/readability; alignment ensures consistency)
+    *   Scenario tags match phase rules (`README_BDA.md`)
 3.  **`test_*.py` Files:**
-    *   Use `scenarios("feature_name.feature")` correctly (relative path).
-    *   No `@scenario()` decorators are present.
-    *   All steps have implementations (`@given`/`@when`/`@then`).
-    *   All step definition functions must be named `_`.
-    *   Step stubs should call `skip("not implemented")`.
-4.  **Completeness:** Stub any missing files, scenarios, or steps per conventions.
-5.  **Output:** Summarise all changes made.
+    *   Use `scenarios("feature_name.feature")` correctly (relative path)
+    *   No `@scenario()` decorators are present
+    *   All steps have implementations (`@given`/`@when`/`@then`)
+    *   All step definition functions must be named `_`
+    *   Step stubs should call `skip("not implemented")`
+4.  **Completeness:** Stub any missing files, scenarios, or steps per conventions
+5.  **Output:** Summarise all changes made
