@@ -141,22 +141,28 @@ pytest automatically executes all phases in the exact order specified in this fi
 ## Maintenance and Alignment
 
 ### ALIGN prompt
-When I ask to "Align" the features, ensure the following:
-1.  **`CABINET.yaml`:** Entries are complete (`path`, `phase`, `feature`, `description`)
+When I ask to "Align" the features, ensure:
 
-2.  **All `.feature` Files:**
-    *   Descriptions (Feature/Scenario) align with `CABINET.yaml`
-        Note: This description is intentionally duplicated for tooling/readability; alignment ensures consistency
+1. **Strictly enforce**:
+   - Tags per phase (single @ci is valid for configure)
+   - File/scenario structure matches CABINET.yaml
+2. **Never**:
+   - Add/remove steps or files unless missing
+   - Modify formatting, imports, or comments
+   - Change implemented logic
+3. **Only edit if**:
+   - A rule is *directly* violated
+   - The fix is *unambiguous*
 
-    *   Scenario tags match phase rules (`README_BDA.md`)
-
-3.  All **`test_*.py` Files:**
-    *   Use `scenarios("feature_name.feature")` correctly (relative path)
-    *   No `@scenario()` decorators are present
-    *   All steps have implementations (`@given`/`@when`/`@then`)
-    *   All step definition functions must be named `_`
-    *   Step stubs should call `skip("not implemented")`
-
-4.  **Completeness:** Stub any missing files, scenarios, or steps per conventions
-
-5.  **Output:** Summarise all changes made
+Details:
+1.  **`CABINET.yaml`:** Entries complete (`path`, `phase`, `feature`, `description`)
+2.  **Tags**:
+    - `ready`: Only `@accept`
+    - `configure`: 1+ of `@dev`/`@ci`/`@stage`/`@prod` (single tag OK)
+    - `accept`: Only `@accept`
+    - `monitor`: Only `@monitor`
+3.  **Test Files**:
+    - Correct `scenarios()` usage
+    - No extra decorators
+    - All steps implemented or skipped
+4.  **Output:** Summarise only required changes
