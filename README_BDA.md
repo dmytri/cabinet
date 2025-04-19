@@ -91,6 +91,7 @@ Tilt is responsible for:
   from pytest import skip
   from pytest_bdd import scenarios, scenario, given
 
+  # Path is RELATIVE to the features/ directory, so just the filename.
   scenarios("ready.feature")
   scenario("ready.feature", "Dependencies present in apply container")
   @given("Python >= 3.12 is installed in the apply container")
@@ -137,9 +138,13 @@ When I ask to "Align" the features:
     *   Ensure Scenario descriptions are appropriate (for single-scenario features like `ready`/`monitor`, align with `CABINET.yaml` description).
     *   Verify Scenario tags match the phase rules (`@accept`, `@monitor`, `@dev`/`@ci`/`@stage`/`@prod`) defined in this document (`README_BDA.md`).
 3.  **Align Step Definition Files (`test_*.py`):**
-    *   Ensure `scenarios()` call uses the correct feature file path from `CABINET.yaml`.
+    *   Ensure `scenarios()` call uses **only the feature file name**. The path is relative to the `features/` directory where the `test_*.py` file resides.
+        *   **Correct:** `scenarios("my_feature.feature")`
+        *   **Incorrect:** `scenarios("features/my_feature.feature")`
     *   Ensure each Scenario in the `.feature` file has a corresponding `@scenario()` decorator in the `test_*.py` file.
-    *   Ensure the `@scenario()` decorator uses the correct feature file path and the *exact* Scenario description from the `.feature` file.
+    *   Ensure the `@scenario()` decorator uses **only the feature file name** and the *exact* Scenario description from the `.feature` file.
+        *   **Correct:** `@scenario("my_feature.feature", "Scenario description")`
+        *   **Incorrect:** `@scenario("features/my_feature.feature", "Scenario description")`
     *   Ensure each `@scenario()` decorator is followed by a defined test function (e.g., `def test_my_scenario(): pass`).
 4.  **Stub missing elements:** If feature files, step files, scenarios, or steps are missing based on `CABINET.yaml`, create stubs following project conventions.
 5.  **Summarise changes:** Report all modifications made to achieve alignment.
