@@ -144,12 +144,11 @@ pytest automatically executes all phases in the exact order specified in this fi
 ### ALIGN prompt
 When I ask to "Align" the features, ensure the following:
 1.  **`CABINET.yaml`:** Entries are complete (`path`, `phase`, `feature`, `description`).
-2.  **`.feature` Files:**
+2.  **all `.feature` Files:**
     *   Descriptions (Feature/Scenario) align with `CABINET.yaml`.
     *   Scenario tags match phase rules (`README_BDA.md`).
 3.  **`test_*.py` Files:**
     *   Use `scenarios("feature_name.feature")` correctly (relative path).
-        *   **Correct:** `scenarios("my_feature.feature")`
     *   No `@scenario()` decorators are present.
     *   All steps have implementations (`@given`/`@when`/`@then`).
     *   All step definition functions must be named `_`.
