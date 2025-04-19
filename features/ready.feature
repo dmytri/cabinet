@@ -1,7 +1,7 @@
 Feature: Verify dependencies in apply container
 
-  @accept
-  Scenario: Dependencies present in apply container
+  @atdd
+  Scenario: Verify dependencies in apply container
     When python >= 3.12
      And uv >= 0.6.7
      And pytest-bdd is required

@@ -2,9 +2,9 @@ import sys
 import subprocess
 from pytest_bdd import scenarios, scenario, when
 
-scenarios("ready.feature")
+scenarios("features/ready.feature")
 
-@scenario("ready.feature", "Dependencies present in apply container")
+@scenario("features/ready.feature", "Verify dependencies in apply container")
 def test_dependencies_present():
     pass
 

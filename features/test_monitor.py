@@ -1,9 +1,11 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-scenarios("monitor.feature")
+scenarios("features/monitor.feature")
 
-@scenario("monitor.feature", "Verify Hello World application is healthy")
+@scenario("features/monitor.feature", "Verify Hello World application is healthy")
+def test_monitor_health():
+    pass
 
 @given("the Hello World application is deployed")
 def _():

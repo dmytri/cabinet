@@ -1,9 +1,9 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-scenarios("accept_hello_world.feature")
+scenarios("features/accept_hello_world.feature")
 
-@scenario("accept_hello_world.feature", "Accessing the default Caddy site")
+@scenario("features/accept_hello_world.feature", "Accessing the default Caddy site")
 def test_accessing_default_site():
     pass
 
