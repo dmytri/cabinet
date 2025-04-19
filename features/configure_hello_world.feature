@@ -1,13 +1,10 @@
 Feature: Deploy and configure Hello World application
 
-  @dev
-  Scenario: Verify Hello World application deployment in development
-    Given Kubernetes client is configured for the local cluster
-    When The Hello World deployment is checked
-    Then The deployment should have at least one ready replica
-     And The Hello World service should exist
+  @dev @ci
+  Scenario: Hello World Container is Built and Deployed by Tilt
+    Then The Hello World Container is running
 
-  @ci
+  @stage @prod
   Scenario: Publish Image to GitHub Container Registry
     Given Credentials for the GitHub Container Registry are available
       And Kaniko build image is present
@@ -15,7 +12,7 @@ Feature: Deploy and configure Hello World application
       And Image is pushed to the GitHub Container Registry
      Then Image is available in the registry
 
-  @ci
+  @stage @prod
   Scenario: Proxy /hello requests to a dedicated Bunny pull zone
     Given Bunny API key is available
       And "asym.me" domain is served by a Bunny pull zone

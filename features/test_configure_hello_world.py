@@ -9,19 +9,14 @@ scenarios("configure_hello_world.feature")
 
 @then("The Hello World Container is running")
 def _():
-    config.load_kube_config()  # Assumes kubeconfig is available
+    config.load_kube_config()
     v1 = client.CoreV1Api()
-    namespace = "default"  # Assuming deployment is in the default namespace
-    label_selector = "app=hello-world" # Assuming pods are labeled with app=hello-world
-
+    namespace = "target"
+    label_selector = "app=target"
     pod_list = v1.list_namespaced_pod(namespace=namespace, label_selector=label_selector)
-
     assert len(pod_list.items) > 0, f"FAIL: No pods found with label '{label_selector}' in namespace '{namespace}'"
-
     running_pods = [pod for pod in pod_list.items if pod.status.phase == "Running"]
-
     assert len(running_pods) > 0, f"FAIL: No pods with label '{label_selector}' are in the 'Running' phase in namespace '{namespace}'"
-
     print(f"PASS: Found {len(running_pods)} running pod(s) with label '{label_selector}' in namespace '{namespace}'")
 
 # --- Steps for Scenario: Publish Image to GitHub Container Registry ---

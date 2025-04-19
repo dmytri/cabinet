@@ -24,6 +24,8 @@ cmd = "pytest -xsvm 'monitor and not skip' --tb=long features/"
 markers = [
   "dev",
   "ci",
+  "stage",
+  "prod",
   "accept",
   "monitor"
 ]
