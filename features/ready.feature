@@ -1,4 +1,4 @@
-Feature: Ready | Apply container test dependencies
+Feature: Verify dependencies in apply container
 
   @accept
   Scenario: Dependencies present in apply container

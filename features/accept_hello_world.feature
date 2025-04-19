@@ -1,4 +1,4 @@
-Feature: Accept | Basic Hello World Site Verification
+Feature: Acceptance tests for Hello World site
 
   @accept
   Scenario: Accessing the default Caddy site

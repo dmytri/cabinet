@@ -1,4 +1,4 @@
-Feature: Configure | Hello World Application Deployment
+Feature: Deploy and configure Hello World application
 
   @ci
   Scenario: Publish Image to GitHub Container Registry

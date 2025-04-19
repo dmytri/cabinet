@@ -1,4 +1,4 @@
-Feature: Monitor | Hello World Application Health
+Feature: Monitor Hello World application health
 
   @monitor
   Scenario: Verify Hello World application is healthy
