@@ -5,6 +5,13 @@ from kubernetes import client, config, utils
 
 scenarios("configure_hello_world.feature")
 
+@then("The Hello World Container is running")
+def _():
+    skip("not implemented")
+
+# replace comments like below with scenario names AI!
+## ~~~
+
 @given("Credentials for the GitHub Container Registry are available")
 def _():
     username = os.getenv("GITHUB_USERNAME")
@@ -30,6 +37,7 @@ def _():
 def _():
     skip("not implemented")
 
+## ~~~
 
 @given("Bunny API key is available")
 def _():
@@ -67,6 +75,3 @@ def _():
 def _():
     skip("not implemented")
 
-@then("The Hello World Container is running")
-def _():
-    skip("not implemented")
