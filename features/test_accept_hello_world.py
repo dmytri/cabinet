@@ -1,9 +1,11 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-scenarios("features/accept_hello_world.feature")
+# Corrected path: removed "features/" prefix
+scenarios("accept_hello_world.feature")
 
-@scenario("features/accept_hello_world.feature", "Accessing the default Caddy site")
+# Corrected path: removed "features/" prefix
+@scenario("accept_hello_world.feature", "Accessing the default Caddy site")
 def test_accessing_default_site():
     pass
 
