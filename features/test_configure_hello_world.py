@@ -7,6 +7,7 @@ scenarios("configure_hello_world.feature")
 
 # --- Steps for Scenario: Build Hello World Container ---
 
+# use kubernetes module to implement this step AI!
 @then("The Hello World Container is running")
 def _():
     skip("not implemented")
