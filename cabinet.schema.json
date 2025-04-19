@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BDA Cabinet Configuration",
+  "description": "Defines the structure for the CABINET.yaml file, which orchestrates BDA phases.",
+  "type": "object",
+  "properties": {
+    "cabinet": {
+      "description": "A brief description or identifier for the BDA cabinet.",
+      "type": "string"
+    },
+    "tests": {
+      "description": "A list defining the BDA test phases and their associated files.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "description": "The path to the Python test file (e.g., test_ready.py).",
+            "type": "string",
+            "pattern": "^test_.*\\.py$"
+          },
+          "phase": {
+            "description": "The BDA phase this test belongs to.",
+            "type": "string",
+            "enum": [
+              "ready",
+              "configure",
+              "accept",
+              "monitor"
+            ]
+          },
+          "feature": {
+            "description": "The path to the Gherkin feature file (e.g., features/ready.feature).",
+            "type": "string",
+            "pattern": "^features/.*\\.feature$"
+          },
+          "description": {
+            "description": "A human-readable description of the test or phase purpose.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "phase",
+          "feature",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "cabinet",
+    "tests"
+  ],
+  "additionalProperties": false
+}
