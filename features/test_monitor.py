@@ -1,9 +1,11 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-scenarios("features/monitor.feature")
+# Corrected path: removed "features/" prefix
+scenarios("monitor.feature")
 
-@scenario("features/monitor.feature", "Verify Hello World application is healthy")
+# Corrected path: removed "features/" prefix
+@scenario("monitor.feature", "Verify Hello World application is healthy")
 def test_monitor_health():
     pass
 
