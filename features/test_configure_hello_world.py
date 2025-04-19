@@ -5,10 +5,6 @@ from kubernetes import client, config, utils
 
 scenarios("configure_hello_world.feature")
 
-@scenario("configure_hello_world.feature", "Publish Image to GitHub Container Registry")
-def test_publish_image():
-    pass
-
 @given("Credentials for the GitHub Container Registry are available")
 def _():
     username = os.getenv("GITHUB_USERNAME")
@@ -34,8 +30,6 @@ def _():
 def _():
     skip("not implemented")
 
-
-@scenario("configure_hello_world.feature", "Proxy /hello requests to a dedicated Bunny pull zone")
 
 @given("Bunny API key is available")
 def _():

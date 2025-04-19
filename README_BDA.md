@@ -84,18 +84,22 @@ Tilt is responsible for:
 ### BDD Stubs
 - **Directory**: features/
 - **Rules**:
-  - Every test file must include both `scenarios("…")` and `@scenario("…")`
-  - Stub definitions must use a `_()` function that calls `skip("not implemented")`
+  - Every test file must include `scenarios("...")` to load tests from the corresponding feature file.
+  - Step definition stubs (`@given`, `@when`, `@then`) must use a `_()` function that calls `skip("not implemented")`.
 - **Example**:
   ```python
   from pytest import skip
-  from pytest_bdd import scenarios, scenario, given
+  from pytest_bdd import scenarios, given
 
   # Path is RELATIVE to the features/ directory, so just the filename.
+  # This call generates the tests based on the feature file scenarios.
   scenarios("ready.feature")
-  scenario("ready.feature", "Dependencies present in apply container")
+
+  # No separate @scenario decorator or placeholder function needed here.
+
+  # Step definitions implement the steps from the feature file.
   @given("Python >= 3.12 is installed in the apply container")
-  def _():
+  def _(): # Step definition stub
     skip("not implemented")
   ```
 
@@ -141,10 +145,8 @@ When I ask to "Align" the features:
     *   Ensure `scenarios()` call uses **only the feature file name**. The path is relative to the `features/` directory where the `test_*.py` file resides.
         *   **Correct:** `scenarios("my_feature.feature")`
         *   **Incorrect:** `scenarios("features/my_feature.feature")`
-    *   Ensure each Scenario in the `.feature` file has a corresponding `@scenario()` decorator in the `test_*.py` file.
-    *   Ensure the `@scenario()` decorator uses **only the feature file name** and the *exact* Scenario description from the `.feature` file.
-        *   **Correct:** `@scenario("my_feature.feature", "Scenario description")`
-        *   **Incorrect:** `@scenario("features/my_feature.feature", "Scenario description")`
-    *   Ensure each `@scenario()` decorator is followed by a defined test function (e.g., `def test_my_scenario(): pass`).
-4.  **Stub missing elements:** If feature files, step files, scenarios, or steps are missing based on `CABINET.yaml`, create stubs following project conventions.
+    *   Ensure **no** `@scenario()` decorators are present if `scenarios()` is used to load the entire feature file. Rely on `scenarios()` for test generation.
+    *   Ensure each step (`Given`, `When`, `Then`, `And`, `But`) in the `.feature` file has a corresponding step definition function (`@given`, `@when`, `@then`) in the `test_*.py` file.
+    *   Ensure each step definition stub uses a function named `_` that calls `skip("not implemented")`, as per the BDD Stubs convention (e.g., `@given("...")\ndef _():\n    skip("not implemented")`).
+4.  **Stub missing elements:** If feature files, step files, scenarios, or steps are missing based on `CABINET.yaml`, create stubs following project conventions (using `scenarios()` and step definition stubs).
 5.  **Summarise changes:** Report all modifications made to achieve alignment.

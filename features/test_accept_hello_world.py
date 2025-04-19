@@ -1,13 +1,7 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-# Corrected path: removed "features/" prefix
 scenarios("accept_hello_world.feature")
-
-# Corrected path: removed "features/" prefix
-@scenario("accept_hello_world.feature", "Accessing the default Caddy site")
-def test_accessing_default_site():
-    pass
 
 @given("the target container is running")
 def _():

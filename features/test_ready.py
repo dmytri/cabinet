@@ -4,8 +4,6 @@ from pytest_bdd import scenarios, scenario, when
 
 scenarios("ready.feature")
 
-@scenario("ready.feature", "Verify dependencies in apply container")
-
 @when("python >= 3.12")
 def _():
     assert sys.version_info >= (3, 12)

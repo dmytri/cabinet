@@ -1,11 +1,7 @@
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 
-# Corrected path: removed "features/" prefix
 scenarios("monitor.feature")
-
-# Corrected path: removed "features/" prefix
-@scenario("monitor.feature", "Verify Hello World application is healthy")
 
 @given("the Hello World application is deployed")
 def _():
