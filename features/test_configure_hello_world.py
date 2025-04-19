@@ -2,17 +2,9 @@ import os
 from pytest import skip
 from pytest_bdd import scenarios, scenario, given, when, then
 from kubernetes import client, config, utils
-from dotenv import load_dotenv
 
-# Load environment variables specifically from .env.creds
-# You can add load_dotenv() without arguments later if you create a general .env file
-load_dotenv(dotenv_path='.env.creds')
-
-# Corrected path: removed "features/" prefix
 scenarios("configure_hello_world.feature")
 
-# Scenario: Publish Image to GitHub Container Registry
-# Corrected path: removed "features/" prefix
 @scenario("configure_hello_world.feature", "Publish Image to GitHub Container Registry")
 def test_publish_image():
     pass
@@ -43,11 +35,7 @@ def _():
     skip("not implemented")
 
 
-# Scenario: Proxy /hello requests to a dedicated Bunny pull zone
-# Corrected path: removed "features/" prefix
 @scenario("configure_hello_world.feature", "Proxy /hello requests to a dedicated Bunny pull zone")
-def test_proxy_hello_requests():
-    pass
 
 @given("Bunny API key is available")
 def _():

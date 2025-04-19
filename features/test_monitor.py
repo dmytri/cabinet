@@ -6,8 +6,6 @@ scenarios("monitor.feature")
 
 # Corrected path: removed "features/" prefix
 @scenario("monitor.feature", "Verify Hello World application is healthy")
-def test_monitor_health():
-    pass
 
 @given("the Hello World application is deployed")
 def _():
