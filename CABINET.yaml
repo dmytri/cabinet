@@ -1,4 +1,4 @@
-# add yaml scheme here AI!
+# yaml-language-server: $schema=./schema/cabinet.schema.json
 cabinet: >
   trick.ca/binet
 
@@ -24,4 +24,3 @@ tests:
     phase: monitor
     feature: features/monitor.feature
     description: "Monitor Hello World application health"
-
