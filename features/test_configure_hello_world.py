@@ -5,6 +5,9 @@ from kubernetes import client, config, utils
 
 scenarios("configure_hello_world.feature")
 
+# replace comment with scenarion name AI!
+# ~~~
+
 @then("The Hello World Container is running")
 def _():
     skip("not implemented")
