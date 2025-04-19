@@ -1,6 +1,6 @@
 Feature: Verify dependencies in apply container
 
-  @atdd
+  @accept
   Scenario: Verify dependencies in apply container
     When python >= 3.12
      And uv >= 0.6.7

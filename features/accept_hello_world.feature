@@ -1,6 +1,6 @@
 Feature: Acceptance tests for Hello World site
 
-  @atdd
+  @accept
   Scenario: Accessing the default Caddy site
     Given the target container is running
     When the user accesses the web server root via HTTP
