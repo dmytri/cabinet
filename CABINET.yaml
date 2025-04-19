@@ -1,3 +1,4 @@
+# make schema in yaml schema format inline not extrernal json AI!
 # yaml-language-server: $schema=./schema/cabinet.schema.json
 cabinet: >
   trick.ca/binet
