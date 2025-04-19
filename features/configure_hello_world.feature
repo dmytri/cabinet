@@ -1,5 +1,12 @@
 Feature: Deploy and configure Hello World application
 
+  @dev
+  Scenario: Verify Hello World application deployment in development
+    Given Kubernetes client is configured for the local cluster
+    When The Hello World deployment is checked
+    Then The deployment should have at least one ready replica
+     And The Hello World service should exist
+
   @ci
   Scenario: Publish Image to GitHub Container Registry
     Given Credentials for the GitHub Container Registry are available
