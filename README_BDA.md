@@ -143,17 +143,6 @@ pytest automatically executes all phases in the exact order specified in this fi
 ### ALIGN prompt
 When I ask to "Align" the features, ensure:
 
-1. **Strictly enforce**:
-   - Tags per phase (single @ci is valid for configure)
-   - File/scenario structure matches CABINET.yaml
-2. **Never**:
-   - Add/remove steps or files unless missing
-   - Modify formatting, imports, or comments
-   - Change implemented logic
-3. **Only edit if**:
-   - A rule is *directly* violated
-   - The fix is *unambiguous*
-
 Details:
 1.  **`CABINET.yaml`:** Entries complete (`path`, `phase`, `feature`, `description`)
 2.  **Tags**:
@@ -166,3 +155,15 @@ Details:
     - No extra decorators
     - All steps implemented or skipped
 4.  **Output:** Summarise only required changes
+
+**Strictly enforce**:
+   - Tags per phase (single @ci is valid for configure)
+   - features match CABINET.yaml
+**Never**:
+   - Add/remove steps or files unless missing
+   - Modify formatting, imports, or comments
+   - Change implemented logic
+**Only edit if**:
+   - A rule is *directly* violated
+   - The fix is *unambiguous*
+
