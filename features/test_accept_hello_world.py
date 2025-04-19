@@ -1,5 +1,5 @@
 from pytest import skip
-from pytest_bdd import scenarios, scenario, given, when, then
+from pytest_bdd import scenarios, given, when, then
 
 scenarios("accept_hello_world.feature")
 

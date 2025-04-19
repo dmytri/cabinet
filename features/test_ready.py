@@ -1,6 +1,6 @@
 import sys
 import subprocess
-from pytest_bdd import scenarios, scenario, when
+from pytest_bdd import scenarios, when
 
 scenarios("ready.feature")
 

@@ -1,6 +1,6 @@
 import os
 from pytest import skip
-from pytest_bdd import scenarios, scenario, given, when, then
+from pytest_bdd import scenarios, given, when, then
 from kubernetes import client, config, utils
 
 scenarios("configure_hello_world.feature")
