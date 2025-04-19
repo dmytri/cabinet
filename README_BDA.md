@@ -101,7 +101,7 @@ Tilt is responsible for:
 ### CABINET.yaml Example
 ```yaml
 cabinet: >
-  example.bda/cabinet
+  example bda cabinet
 
 tests:
   - path: test_ready.py
