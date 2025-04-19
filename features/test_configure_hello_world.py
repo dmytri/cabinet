@@ -13,7 +13,7 @@ def _():
 
 @given("Kaniko build image is present")
 def _():
-    pass
+    skip("not implemented")
 
 @when("Application Docker image is built")
 def _():
