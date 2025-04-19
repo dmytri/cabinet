@@ -85,11 +85,12 @@ Tilt is responsible for:
 - **Directory**: features/
 - **Rules**:
   - Every test file must include `scenarios("...")` to load tests from the corresponding feature file.
-  - Step definition stubs (`@given`, `@when`, `@then`) must use a `_()` function that calls `skip("not implemented")`.
+  - All step definition functions (`@given`, `@when`, `@then`) must use the name `_`.
+  - Stubs should call `skip("not implemented")`.
 - **Example**:
   ```python
   from pytest import skip
-  from pytest_bdd import scenarios, given
+  from pytest_bdd import scenarios, given, when
 
   # Path is RELATIVE to the features/ directory, so just the filename.
   # This call generates the tests based on the feature file scenarios.
@@ -98,9 +99,15 @@ Tilt is responsible for:
   # No separate @scenario decorator or placeholder function needed here.
 
   # Step definitions implement the steps from the feature file.
-  @given("Python >= 3.12 is installed in the apply container")
+  # ALL step functions must be named _
+  @given("Some precondition")
+  def _(): # Implemented step
+      # ... implementation code ...
+      pass
+
+  @when("Some action occurs")
   def _(): # Step definition stub
-    skip("not implemented")
+      skip("not implemented")
   ```
 
 ### CABINET.yaml Example
@@ -135,18 +142,17 @@ pytest automatically executes all phases in the exact order specified in this fi
 ## Maintenance and Alignment
 
 ### ALIGN prompt
-When I ask to "Align" the features:
-1.  **Verify `CABINET.yaml` entries:** Check each test entry for `path`, `phase`, `feature`, and `description`.
-2.  **Align Feature Files (`.feature`):**
-    *   Ensure the Feature description matches the `description` in `CABINET.yaml`.
-    *   Ensure Scenario descriptions are appropriate (for single-scenario features like `ready`/`monitor`, align with `CABINET.yaml` description).
-    *   Verify Scenario tags match the phase rules (`@accept`, `@monitor`, `@dev`/`@ci`/`@stage`/`@prod`) defined in this document (`README_BDA.md`).
-3.  **Align Step Definition Files (`test_*.py`):**
-    *   Ensure `scenarios()` call uses **only the feature file name**. The path is relative to the `features/` directory where the `test_*.py` file resides.
+When I ask to "Align" the features, ensure the following:
+1.  **`CABINET.yaml`:** Entries are complete (`path`, `phase`, `feature`, `description`).
+2.  **`.feature` Files:**
+    *   Descriptions (Feature/Scenario) align with `CABINET.yaml`.
+    *   Scenario tags match phase rules (`README_BDA.md`).
+3.  **`test_*.py` Files:**
+    *   Use `scenarios("feature_name.feature")` correctly (relative path).
         *   **Correct:** `scenarios("my_feature.feature")`
-        *   **Incorrect:** `scenarios("features/my_feature.feature")`
-    *   Ensure **no** `@scenario()` decorators are present if `scenarios()` is used to load the entire feature file. Rely on `scenarios()` for test generation.
-    *   Ensure each step (`Given`, `When`, `Then`, `And`, `But`) in the `.feature` file has a corresponding step definition function (`@given`, `@when`, `@then`) in the `test_*.py` file.
-    *   Ensure each step definition stub uses a function named `_` that calls `skip("not implemented")`, as per the BDD Stubs convention (e.g., `@given("...")\ndef _():\n    skip("not implemented")`).
-4.  **Stub missing elements:** If feature files, step files, scenarios, or steps are missing based on `CABINET.yaml`, create stubs following project conventions (using `scenarios()` and step definition stubs).
-5.  **Summarise changes:** Report all modifications made to achieve alignment.
+    *   No `@scenario()` decorators are present.
+    *   All steps have implementations (`@given`/`@when`/`@then`).
+    *   All step definition functions must be named `_`.
+    *   Step stubs should call `skip("not implemented")`.
+4.  **Completeness:** Stub any missing files, scenarios, or steps per conventions.
+5.  **Output:** Summarise all changes made.
