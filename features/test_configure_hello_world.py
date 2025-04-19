@@ -11,8 +11,6 @@ load_dotenv(dotenv_path='.env.creds')
 scenarios("configure_hello_world.feature")
 
 @scenario("configure_hello_world.feature", "Publish Image to GitHub Container Registry")
-def test_publish_image():
-    pass
 
 @given("Credentials for the GitHub Container Registry are available")
 def _():
