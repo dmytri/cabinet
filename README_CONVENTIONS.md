@@ -40,6 +40,8 @@ When I ask to "Align" the features
 1. Ensure CABINET.yaml and all feature files and step functions are aligned
 2. Ensure all descriptions match between CABINET.yaml, featue files and step files
 3. Ensure order of scenarios and steps are the same
+4. Stub and feature files, step files or steps that are missing
+5. Summerise what was done to bring features into alignment
 
 ## Code Guidelines
 
