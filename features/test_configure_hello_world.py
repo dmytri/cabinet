@@ -34,7 +34,7 @@ scenarios("configure_hello_world.feature")
 
 # --- Steps for Scenario: Build Hello World Container ---
 
-@given("Kubernetes API Connection", target_fixture="k8s_client")
+@given("Kubernetes API Connection is available", target_fixture="k8s_client")
 def _(is_dev: bool) -> CoreV1Api:
 
     if is_dev:
