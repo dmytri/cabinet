@@ -1,12 +1,18 @@
 import httpx
 from typing import Callable
+from pytest import skip
 from pytest_bdd import scenarios, given, when, then
 
 scenarios("accept_hello_world.feature")
 
 @given("the hello world URL", target_fixture="target_url")
 def _(marked: Callable[[str], bool]) -> str:
-    return "http://example.com/hello-world"
+    if marked('dev'):
+        return "http://localhost:8080/"
+    elif marked('ci'):
+        return "http://target.hello-world.svc.cluster.local"
+    else:
+        return "https://asym.me/tric;to=hello-world"
 
 @when("the user browses the hello world site")
 def _(target_url: str, context) -> None:
