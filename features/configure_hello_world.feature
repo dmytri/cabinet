@@ -4,7 +4,6 @@ Feature: Deploy and configure Hello World application
   Scenario: Hello World Container is Built and Deployed by Tilt
     Given Kubernetes API Connection is available
      Then The Hello World Service is available
-    Then The Hello World Service is available
 
   @stage @prod
   Scenario: Publish Image to GitHub Container Registry
