@@ -3,18 +3,21 @@ from pytest import skip, fixture
 from pytest_bdd import scenarios, given, when, then
 from kubernetes import client, config, utils
 from kubernetes.client import CoreV1Api
-
+from typing import cast
 
 ## FIXTURES
 #
 
-# conftest.py
+@fixture
+def marker(pytestconfig) -> str:
+    marker = cast(str, pytestconfig.getoption("-m"))
+    assert marker, "pytest must be called with marker, eg -m dev"
+    return marker
 
 @fixture
 def is_dev(pytestconfig) -> bool:
-    marker = pytestconfig.getoption("-m")
-    if not marker:
-        return False
+    marker = cast(str, pytestconfig.getoption("-m"))
+    assert marker
 
     joined = ' '.join(marker.split())
     normalized = f" {joined} "

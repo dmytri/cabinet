@@ -2,6 +2,7 @@ Feature: Deploy and configure Hello World application
 
   @dev @ci
   Scenario: Hello World Container is Built and Deployed by Tilt
+    Given Kubernetes API Connection
     Then The Hello World Container is running
 
   @stage @prod
