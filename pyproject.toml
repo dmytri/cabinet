@@ -18,7 +18,7 @@ cmd = "pytest -xsm 'accept or dev and not skip' --tb=short features/"
 cmd = "pytest -xsvm 'accept or ci and not skip' --tb=long features/"
 
 [tool.poe.tasks.monitor]
-cmd = "pytest -xsvm 'monitor and not skip' --tb=long features/"
+cmd = "pytest -xsvm 'monitor and not skip' --tb=line features/"
 
 [tool.pytest.ini_options]
 markers = [

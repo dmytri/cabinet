@@ -1,6 +1,6 @@
 Feature: Acceptance tests for Hello World site
 
-  @accept
+  @accept @monitor
   Scenario: Hello World home site
     Given the hello world URL
     When the user browses the hello world site
