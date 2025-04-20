@@ -8,7 +8,7 @@ from typing import cast, Callable
 @fixture
 def marked(pytestconfig) -> Callable[[str], bool]:
     markers = cast(str, pytestconfig.getoption("-m"))
-    assert markers, "pytest must be called with markers eg -m dev"
+    assert markers, "this cabinet requires pytest to be called with markers eg -m dev"
     joined = ' '.join(markers.split())
     normalized = f" {joined} "
 
@@ -18,6 +18,14 @@ def marked(pytestconfig) -> Callable[[str], bool]:
         return has_mark and not_negated
 
     return _checker
+
+## ENFORCE EXITFIRST
+
+def pytest_configure(config):
+    if not config.option.exitfirst:
+        raise RuntimeError("this cabinet requires -x/--exitfirst to be used.")
+
+## ORDERING
 
 with open("CABINET.yaml", "r") as file:
     TESTS = [test["path"] for test in yaml.safe_load(file)["tests"]]
@@ -30,6 +38,8 @@ def pytest_collection_modifyitems(items):
         return (TESTS.index(item.fspath.basename), item.nodeid)
 
     items.sort(key=sort_key)
+
+# TEST OUTPUT
 
 def pytest_bdd_before_scenario(scenario):
     print(f"\n\033[34mScenario: {scenario.name}\033[0m")
