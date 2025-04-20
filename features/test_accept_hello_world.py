@@ -12,6 +12,7 @@ scenarios("accept_hello_world.feature")
 
 @given("the hello world URL", target_fixture="hello_world_url")
 def _(marked: Callable[[str], bool]) -> str:
+    print(">>> Running Given: the hello world URL") # Added print statement
     if marked('dev'):
         return "http://localhost:8080/"
     elif marked('ci'):
