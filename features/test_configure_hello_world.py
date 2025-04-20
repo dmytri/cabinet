@@ -7,6 +7,10 @@ scenarios("configure_hello_world.feature")
 
 # --- Steps for Scenario: Build Hello World Container ---
 
+@given("Kubernetes API Connection")
+def _():
+    skip("not implemented")
+
 @then("The Hello World Container is running")
 def _():
     config.load_kube_config()
