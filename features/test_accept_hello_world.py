@@ -15,6 +15,6 @@ def _() -> None:
 def _() -> None:
     skip("not implemented")
 
-@then("the response should contain the default Caddy welcome message")
+@then('the response should contain "hello world"')
 def _() -> None:
     skip("not implemented")
