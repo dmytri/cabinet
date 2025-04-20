@@ -44,7 +44,7 @@ def _(is_dev: bool) -> CoreV1Api:
 
     return client.CoreV1Api()
 
-@then("The Hello World Container is running")
+@then("The Hello World Service is available")
 def _(k8s_client: CoreV1Api) -> None:
     assert k8s_client.read_namespaced_service("hello-world", "target")
 
