@@ -15,5 +15,5 @@ k8s_resource('build', auto_init=False, trigger_mode=TRIGGER_MODE_MANUAL)
 
 docker_build('apply', '.')
 k8s_yaml('manifest.yaml')
-k8s_resource('apply', auto_init=False, trigger_mode=TRIGGER_MODE_MANUAL)
+k8s_resource('apply', auto_init=True, trigger_mode=TRIGGER_MODE_MANUAL)
 

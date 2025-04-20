@@ -1,59 +1,28 @@
+name: Tilt CI
+
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-
-permissions:
-  contents: read
-  # packages: write # Uncomment if configure tests push to GHCR
 
 jobs:
-  tilt: # Shortened job name
+  tilt:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - uses: docker-practice/actions-setup-docker@v1
-      - uses: helm/kind-action@v1.10.0
-      - uses: azure/setup-kubectl@v3
-      - uses: tilt-dev/setup-tilt@v1
 
-      - name: Run Tilt, Wait for Job, Create Snapshot # Name kept for clarity
-        env:
-          GITHUB_USERNAME: ${{ secrets.GHCR_USERNAME }} # Needed if tests require it
-          GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}     # Needed if tests require it
-          KUBECONFIG: ${{ env.KUBECONFIG }}
+      - name: Run Tilt CI with snapshot
         run: |
-          # Use subshell to group commands and capture exit code
-          ( \
-            tilt up --hud=false & \
-            # Optional: Add 'sleep 5' or similar if trigger fails without pause
-            tilt trigger apply && \
-            kubectl wait --for=condition=complete job/apply -n target --timeout=10m \
-          )
-          exit_code=$? # Capture exit code of kubectl wait
+          docker run --rm \
+            -v $PWD:/app \
+            -w /app \
+            -v ${{ runner.temp }}:/out \
+            tiltdev/tilt \
+            tilt ci --output-snapshot-on-exit /out/tilt-snapshot.json
 
-          # Always create snapshot regardless of job outcome
-          echo "Capturing Tilt snapshot..."
-          tilt snapshot create --reason "CI run for ${{ github.sha }}" tilt-snapshot.json
-
-          # Exit with the original code to reflect job success/failure
-          exit $exit_code
-
-      - uses: actions/upload-artifact@v4
-        if: always() # Always upload the snapshot
+      - name: Upload snapshot artifact
+        uses: actions/upload-artifact@v4
         with:
           name: tilt-snapshot
-          path: tilt-snapshot.json
-feat: add GitHub Action for Tilt CI using kind
-
-Adds a GitHub Actions workflow (`.github/workflows/tilt-ci.yaml`) to:
-- Set up a Kubernetes cluster using Kind.
-- Install kubectl and Tilt.
-- Start Tilt in the background (`tilt up --hud=false`).
-- Trigger the `apply` job using `tilt trigger apply`.
-- Wait for the `apply` job (which runs `pytest -m 'accept or ci and not skip'` via `poe ci` defined in the Dockerfile CMD) to complete using `kubectl wait`.
-- Capture a Tilt snapshot (`tilt snapshot create`) regardless of job success or failure.
-- Upload the snapshot as a workflow artifact.
-
-This workflow relies on the `apply` job being defined with `trigger_mode=TRIGGER_MODE_MANUAL` in the Tiltfile and the Dockerfile CMD executing the CI tests. It requires `GHCR_USERNAME` and `GHCR_TOKEN` secrets to be configured in the repository if tests need registry access.
+          path: ${{ runner.temp }}/tilt-snapshot.json

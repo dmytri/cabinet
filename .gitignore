@@ -12,4 +12,4 @@ wheels/
 .env.*
 .aider*
 !.aider.conf.yml
-quay-config.json
+tilt-snapshot.json
