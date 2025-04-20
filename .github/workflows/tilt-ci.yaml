@@ -8,35 +8,21 @@ on:
 jobs:
   tilt:
     runs-on: ubuntu-latest
-    container:
-      image: tiltdev/tilt
-      options: --privileged  # Required for Kind to run Docker-in-Docker
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create Kind cluster with static API port
-        run: |
-          cat <<EOF > kind-config.yaml
-          kind: Cluster
-          apiVersion: kind.x-k8s.io/v1alpha4
-          networking:
-            apiServerAddress: "0.0.0.0"
-            apiServerPort: 6443
-          EOF
+      - uses: helm/kind-action@v1
+        with:
+          version: v0.20.0
 
-          kind create cluster --config kind-config.yaml --name chart-testing
-
-      - name: Patch kubeconfig to use host.docker.internal
-        run: |
-          sed -i "s|https://.*:6443|https://host.docker.internal:6443|" /github/home/.kube/config
+      - name: Install Tilt
+        run: curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 
       - name: Run Tilt CI
-        run: tilt ci --namespace=target --output-snapshot-on-exit tilt-snapshot.json
-        env:
-          KUBECONFIG: /github/home/.kube/config
+        run: tilt ci --output-snapshot-on-exit tilt-snapshot.json
 
-      - name: Upload Tilt snapshot
+      - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
         with:
           name: tilt-snapshot
