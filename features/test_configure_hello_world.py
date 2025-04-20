@@ -109,7 +109,7 @@ def _() -> None:
 def _() -> None:
     skip("not implemented")
 
-@then('Requests to "asym.me/hello" are served via the "hello" pull zone origin")
+@then('Requests to "asym.me/hello" are served via the "hello" pull zone origin')
 def _() -> None:
     skip("not implemented")
 
