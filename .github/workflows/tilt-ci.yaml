@@ -16,10 +16,11 @@ jobs:
 
       - name: Run Tilt CI with snapshot and apply trigger
         run: |
-          kind create cluster
-          mkdir -p /out
+          kind create cluster --wait=1m
+          kubectl wait --for=condition=ready node --all --timeout=60s
           kubectl cluster-info --context kind-kind
-          kubectl proxy &
+          #kubectl proxy &
+          mkdir -p /out
           tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
 
       - name: Upload snapshot artifact
