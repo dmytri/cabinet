@@ -15,7 +15,7 @@ def _(marked: Callable[[str], bool]) -> str:
         return "http://localhost:8080/"
     elif marked('ci'):
         return "http://hello-world.target.svc.cluster.local"
-    else marked("monitor"):
+    elif marked("monitor"):
         return "https://asym.me/tric;to=hello-world"
 
 @when("the user browses the hello world site")
