@@ -1,0 +1,47 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  # packages: write # Uncomment if configure tests push to GHCR
+
+jobs:
+  tilt: # Shortened job name
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker-practice/actions-setup-docker@v1
+      - uses: helm/kind-action@v1.10.0
+      - uses: azure/setup-kubectl@v3
+      - uses: tilt-dev/setup-tilt@v1
+
+      - name: Run Tilt, Wait for Job, Create Snapshot # Name kept for clarity
+        env:
+          GITHUB_USERNAME: ${{ secrets.GHCR_USERNAME }} # Needed if tests require it
+          GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}     # Needed if tests require it
+          KUBECONFIG: ${{ env.KUBECONFIG }}
+        run: |
+          # Use subshell to group commands and capture exit code
+          ( \
+            tilt up --hud=false & \
+            # Optional: Add 'sleep 5' or similar if trigger fails without pause
+            tilt trigger apply && \
+            kubectl wait --for=condition=complete job/apply -n target --timeout=10m \
+          )
+          exit_code=$? # Capture exit code of kubectl wait
+
+          # Always create snapshot regardless of job outcome
+          echo "Capturing Tilt snapshot..."
+          tilt snapshot create --reason "CI run for ${{ github.sha }}" tilt-snapshot.json
+
+          # Exit with the original code to reflect job success/failure
+          exit $exit_code
+
+      - uses: actions/upload-artifact@v4
+        if: always() # Always upload the snapshot
+        with:
+          name: tilt-snapshot
+          path: tilt-snapshot.json
