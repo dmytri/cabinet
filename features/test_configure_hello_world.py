@@ -1,6 +1,5 @@
 import os
-from typing import cast
-from pytest import skip, fixture, FixtureRequest
+from pytest import skip, fixture
 from pytest_bdd import scenarios, given, when, then
 from kubernetes import client, config, utils
 from kubernetes.client import CoreV1Api
@@ -12,26 +11,17 @@ from kubernetes.client import CoreV1Api
 # conftest.py
 
 @fixture
-def is_dev(request) -> bool:
-    from _pytest.mark.evaluate import cached_eval
-    expr: str = request.config.getoption("markexpr") or ""
-    if not expr:
+def is_dev(pytestconfig) -> bool:
+    marker = pytestconfig.getoption("-m")
+    if not marker:
         return False
-    namespace = {"dev": True}
-    return bool(cached_eval(request.config, expr, namespace))
 
-# @fixture
-# def is_dev(pytestconfig) -> bool:
-#     marker = pytestconfig.getoption("-m")
-#     if not marker:
-#         return False
+    joined = ' '.join(marker.split())
+    normalized = f" {joined} "
+    has_dev = " dev " in normalized
+    not_negated = " not dev " not in normalized
 
-#     joined = ' '.join(marker.split())
-#     normalized = f" {joined} "
-#     has_dev = " dev " in normalized
-#     not_negated = " not dev " not in normalized
-
-#     return has_dev and not_negated
+    return has_dev and not_negated
 
 
 ## SCENARIOS
