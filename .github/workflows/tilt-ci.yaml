@@ -29,7 +29,7 @@ jobs:
 
       - name: Patch kubeconfig to use host.docker.internal
         run: |
-          sed -i "s|127.0.0.1:[0-9]*|host.docker.internal:6443|" /github/home/.kube/config
+          sed -i "s|https://.*:6443|https://host.docker.internal:6443|" /github/home/.kube/config
 
       - name: Run Tilt CI
         run: tilt ci --namespace=target --output-snapshot-on-exit tilt-snapshot.json
