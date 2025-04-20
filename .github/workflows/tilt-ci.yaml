@@ -1,4 +1,3 @@
-
 name: Tilt CI
 
 on:
@@ -28,14 +27,16 @@ jobs:
 
           kind create cluster --config kind-config.yaml --name chart-testing
 
-      - name: Patch kubeconfig for container access
+      - name: Patch kubeconfig to use host.docker.internal
         run: |
-          sed -i "s|127.0.0.1:[0-9]*|host.docker.internal:6443|" /root/.kube/config
+          sed -i "s|127.0.0.1:[0-9]*|host.docker.internal:6443|" /github/home/.kube/config
 
       - name: Run Tilt CI
         run: tilt ci --output-snapshot-on-exit tilt-snapshot.json
+        env:
+          KUBECONFIG: /github/home/.kube/config
 
-      - name: Upload snapshot artifact
+      - name: Upload Tilt snapshot
         uses: actions/upload-artifact@v4
         with:
           name: tilt-snapshot
