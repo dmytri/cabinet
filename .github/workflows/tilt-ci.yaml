@@ -16,6 +16,7 @@ jobs:
 
       - name: Run Tilt CI with snapshot and apply trigger
         run: |
+          kind create cluster
           mkdir -p /out
           tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
 
