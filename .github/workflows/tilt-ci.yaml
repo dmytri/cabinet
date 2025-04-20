@@ -17,7 +17,7 @@ jobs:
       - name: Run Tilt CI with snapshot and apply trigger
         run: |
           mkdir -p /out
-          tilt ci --output-snapshot-on-exit /out/tilt-snapshot.json
+          tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
 
       - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
