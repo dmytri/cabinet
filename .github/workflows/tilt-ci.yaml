@@ -20,7 +20,7 @@ jobs:
         run: curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 
       - name: Run Tilt CI
-        run: tilt ci --output-snapshot-on-exit tilt-snapshot.json
+        run: tilt ci --namespace=target --output-snapshot-on-exit tilt-snapshot.json
 
       - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
