@@ -3,7 +3,7 @@ from pytest import skip, fixture
 from pytest_bdd import scenarios, given, when, then
 from kubernetes import client, config, utils
 from kubernetes.client import CoreV1Api
-from typing import cast
+from typing import cast, Callable
 
 ## FIXTURES
 #
@@ -32,7 +32,7 @@ scenarios("configure_hello_world.feature")
 # --- Steps for Scenario: Build Hello World Container ---
 
 @given("Kubernetes API Connection is available", target_fixture="k8s_client")
-def _(marked) -> CoreV1Api:
+def _(marked: Callable[[str], bool]) -> CoreV1Api:
 
     if marked('dev'):
         config.load_kube_config()
