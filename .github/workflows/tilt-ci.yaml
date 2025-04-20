@@ -8,21 +8,19 @@ on:
 jobs:
   tilt:
     runs-on: ubuntu-latest
+    container:
+      image: tiltdev/tilt:latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run Tilt CI with snapshot
+      - name: Run Tilt CI with snapshot and apply trigger
         run: |
-          docker run --rm \
-            -v $PWD:/app \
-            -w /app \
-            -v ${{ runner.temp }}:/out \
-            tiltdev/tilt \
-            tilt ci --output-snapshot-on-exit /out/tilt-snapshot.json
+          mkdir -p /out
+          tilt ci --output-snapshot-on-exit /out/tilt-snapshot.json
 
       - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
         with:
           name: tilt-snapshot
-          path: ${{ runner.temp }}/tilt-snapshot.json
+          path: /out/tilt-snapshot.json
