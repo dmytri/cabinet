@@ -18,7 +18,8 @@ jobs:
         run: |
           kind create cluster
           mkdir -p /out
-          sleep 3
+          kubectl cluster-info --context kind-kind3
+          kubectl proxy &
           tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
 
       - name: Upload snapshot artifact
