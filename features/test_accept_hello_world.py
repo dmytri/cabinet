@@ -7,7 +7,7 @@ scenarios("accept_hello_world.feature")
 def _() -> None:
     skip("not implemented")
 
-@when("the user accesses the web server root via HTTP")
+@when("the user accesses browser the hello world site")
 def _() -> None:
     skip("not implemented")
 
