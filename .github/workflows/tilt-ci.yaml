@@ -8,23 +8,26 @@ on:
 jobs:
   tilt:
     runs-on: ubuntu-latest
-    container:
-      image: tiltdev/tilt:latest
 
     steps:
       - uses: actions/checkout@v4
+      - uses: helm/kind-action@v1
+        with:
+          version: v0.20.0
 
-      - name: Run Tilt CI with snapshot and apply trigger
+      - name: Run Tilt CI in container
         run: |
-          kind create cluster --wait=1m
-          kubectl wait --for=condition=ready node --all --timeout=60s
-          kubectl cluster-info --context kind-kind
-          #kubectl proxy &
-          mkdir -p /out
-          tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$PWD":/work \
+            -v "$HOME/.kube":/root/.kube \
+            -w /work \
+            tiltdev/tilt \
+            tilt ci --namespace=target --output-snapshot-on-exit /work/tilt-snapshot.json
 
       - name: Upload snapshot artifact
         uses: actions/upload-artifact@v4
         with:
           name: tilt-snapshot
-          path: /out/tilt-snapshot.json
+          path: tilt-snapshot.json
+
