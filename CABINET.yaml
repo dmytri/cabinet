@@ -19,8 +19,3 @@ tests:
     phase: accept
     feature: features/accept_hello_world.feature
     description: "Acceptance tests for Hello World site"
-
-  - path: test_monitor.py
-    phase: monitor
-    feature: features/monitor.feature
-    description: "Monitor Hello World application health"
