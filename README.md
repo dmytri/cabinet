@@ -1,5 +1,6 @@
 # BDA Cabinet Template
 
+[![Tilt CI](https://github.com/dmytri/cabinet/actions/workflows/tilt-ci.yaml/badge.svg)](https://github.com/dmytri/cabinet/actions/workflows/tilt-ci.yaml)
 [![Licence: 0BSD](https://img.shields.io/badge/licence-0BSD-blue.svg)](./LICENSE.md)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](.python-version)
 
