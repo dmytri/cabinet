@@ -5,7 +5,6 @@ from pytest import fixture
 
 scenarios("accept_hello_world.feature")
 
-# Use a fixture to store context between steps
 @fixture(scope="function")
 def context():
     return {}
@@ -15,10 +14,8 @@ def _(marked: Callable[[str], bool]) -> str:
     if marked('dev'):
         return "http://localhost:8080/"
     elif marked('ci'):
-        # Corrected service name based on configure test
         return "http://hello-world.target.svc.cluster.local"
     else:
-        # Assuming 'prod' or similar marker might be used here eventually
         return "https://asym.me/tric;to=hello-world"
 
 @when("the user browses the hello world site")
@@ -32,5 +29,4 @@ def _(context) -> None:
 
 @then('the response should contain "hello world"')
 def _(context) -> None:
-    # Make the check case-insensitive for robustness
-    assert "hello world" in context["response"].text.lower()
+    assert "hello world" in context["response"]
