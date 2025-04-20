@@ -64,17 +64,19 @@ Tilt is responsible for:
   - Test files: `test_accept_<feature>.py` under `features/`
 - **Tags**: [@accept]
 - **Rules**:
-  - Scenarios describe application behaviour, not configuration or provisioning
+  - Scenarios must include `@accept`. They may *optionally* also include `@monitor` if they perform read-only checks suitable for continuous monitoring.
   - DO NOT include any of `@dev`, `@ci`, `@stage`, `@prod` tags here
 
 ### 4. monitor
-- **Purpose**: Continuously validate live runtime behaviour with read-only checks
+- **Purpose**: Continuously validate live runtime behaviour with read-only checks.
+  This phase is optional. Monitoring checks can alternatively be included in the `accept` phase by adding the `@monitor` tag to relevant `@accept` scenarios.
 - **Files**:
   - Feature file: `monitor.feature` under `features/`
   - Test file: `test_monitor.py` under `features/`
 - **Tags**: [@monitor]
 - **Rules**:
-  - There must be exactly one `monitor.feature` and one `test_monitor.py` under `features/`
+  - If this phase is used, scenarios must *only* use the `@monitor` tag.
+  - There must be exactly one `monitor.feature` and one `test_monitor.py` under `features/` *if this phase is implemented*.
   - Scenarios are checks against live systems
   - No side-effects permitted
 
@@ -148,8 +150,8 @@ Details:
 2.  **Tags**:
     - `ready`: Only `@accept`
     - `configure`: 1+ of `@dev`/`@ci`/`@stage`/`@prod` (single tag OK)
-    - `accept`: Only `@accept`
-    - `monitor`: Only `@monitor`
+    - `accept`: Must include `@accept`; may optionally include `@monitor`. No other tags allowed.
+    - `monitor`: Optional phase. If present, must *only* use `@monitor`.
 3.  **Test Files**:
     - Correct `scenarios()` usage
     - No extra decorators
