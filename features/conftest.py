@@ -25,7 +25,7 @@ def pytest_configure(config):
     if not config.option.maxfail == 1:
         raise RuntimeError("this cabinet requires -x/--exitfirst to be used.")
 
-## ORDERING
+## ENFORCE ORDERING
 
 with open("CABINET.yaml", "r") as file:
     TESTS = [test["path"] for test in yaml.safe_load(file)["tests"]]
