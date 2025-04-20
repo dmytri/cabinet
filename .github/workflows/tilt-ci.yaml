@@ -18,7 +18,7 @@ jobs:
         run: |
           kind create cluster
           mkdir -p /out
-          kubectl cluster-info --context kind-kind3
+          kubectl cluster-info --context kind-kind
           kubectl proxy &
           tilt ci --namespace target --output-snapshot-on-exit /out/tilt-snapshot.json
 
