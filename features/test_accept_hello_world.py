@@ -29,4 +29,4 @@ def _(context) -> None:
 
 @then('the response should contain "hello world"')
 def _(context) -> None:
-    assert "hello world" in context["response"]
+    assert "hello world" in context["response"].text
