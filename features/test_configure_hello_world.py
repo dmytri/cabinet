@@ -5,26 +5,6 @@ from kubernetes import client, config, utils
 from kubernetes.client import CoreV1Api
 from typing import cast, Callable
 
-## FIXTURES
-#
-
-@fixture
-def markers(pytestconfig) -> str:
-    markers = cast(str, pytestconfig.getoption("-m"))
-    assert markers, "pytest must be called with markers eg -m dev"
-    joined = ' '.join(markers.split())
-    normalized = f" {joined} "
-    return normalized
-
-@fixture
-def marked(markers: str) -> Callable[[str], bool]:
-    def _checker(mark: str) -> bool:
-        has_mark: bool = f" {mark} " in markers
-        not_negated: bool = f" not {mark} " not in markers
-        return has_mark and not_negated
-    return _checker
-
-
 ## SCENARIOS
 #
 

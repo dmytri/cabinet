@@ -1,7 +1,24 @@
-
 import yaml
+from pytest import fixture
+from typing import cast, Callable
 
-# Load test files from the YAML configuration
+## FIXTURES
+#
+
+@fixture
+def marked(pytestconfig) -> Callable[[str], bool]:
+    markers = cast(str, pytestconfig.getoption("-m"))
+    assert markers, "pytest must be called with markers eg -m dev"
+    joined = ' '.join(markers.split())
+    normalized = f" {joined} "
+
+    def _checker(mark: str) -> bool:
+        has_mark: bool = f" {mark} " in normalized
+        not_negated: bool = f" not {mark} " not in normalized
+        return has_mark and not_negated
+
+    return _checker
+
 with open("CABINET.yaml", "r") as file:
     TESTS = [test["path"] for test in yaml.safe_load(file)["tests"]]
 
