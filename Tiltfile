@@ -9,10 +9,6 @@ docker_build('target', 'target/')
 k8s_yaml('target/manifest.yaml')
 k8s_resource('target', port_forwards=['8080'])
 
-docker_build('build', 'build/')
-k8s_yaml('build/manifest.yaml')
-k8s_resource('build', auto_init=False, trigger_mode=TRIGGER_MODE_MANUAL)
-
 docker_build('apply', '.')
 k8s_yaml('manifest.yaml')
 k8s_resource('apply', auto_init=True, trigger_mode=TRIGGER_MODE_MANUAL)
