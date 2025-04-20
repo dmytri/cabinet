@@ -9,20 +9,17 @@ from typing import cast
 #
 
 @fixture
-def marker(pytestconfig) -> str:
-    marker = cast(str, pytestconfig.getoption("-m"))
-    assert marker, "pytest must be called with marker, eg -m dev"
-    return marker
+def markers(pytestconfig) -> str:
+    markers = cast(str, pytestconfig.getoption("-m"))
+    assert markers, "pytest must be called with markers eg -m dev"
+    joined = ' '.join(markers.split())
+    normalized = f" {joined} "
+    return normalized
 
 @fixture
-def is_dev(pytestconfig) -> bool:
-    marker = cast(str, pytestconfig.getoption("-m"))
-    assert marker
-
-    joined = ' '.join(marker.split())
-    normalized = f" {joined} "
-    has_dev = " dev " in normalized
-    not_negated = " not dev " not in normalized
+def marked(mark: str, markers: str) -> bool:
+    has_dev: bool = f" {mark} " in markers
+    not_negated: bool = f" not {mark} " not in markers
 
     return has_dev and not_negated
 
@@ -35,12 +32,14 @@ scenarios("configure_hello_world.feature")
 # --- Steps for Scenario: Build Hello World Container ---
 
 @given("Kubernetes API Connection is available", target_fixture="k8s_client")
-def _(is_dev: bool) -> CoreV1Api:
+def _(marked) -> CoreV1Api:
 
-    if is_dev:
+    if marked('dev'):
         config.load_kube_config()
-    else:
+    elif marked('ci'):
         config.load_incluster_config()
+    else:
+        raise RuntimeError("Kubernetes API Connection is not available")
 
     return client.CoreV1Api()
 
