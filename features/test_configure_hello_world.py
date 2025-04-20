@@ -1,27 +1,59 @@
 import os
-from pytest import skip
+from typing import cast
+from pytest import skip, fixture, FixtureRequest
 from pytest_bdd import scenarios, given, when, then
 from kubernetes import client, config, utils
+from kubernetes.client import CoreV1Api
+
+
+## FIXTURES
+#
+
+# conftest.py
+
+@fixture
+def is_dev(request) -> bool:
+    from _pytest.mark.evaluate import cached_eval
+    expr: str = request.config.getoption("markexpr") or ""
+    if not expr:
+        return False
+    namespace = {"dev": True}
+    return bool(cached_eval(request.config, expr, namespace))
+
+# @fixture
+# def is_dev(pytestconfig) -> bool:
+#     marker = pytestconfig.getoption("-m")
+#     if not marker:
+#         return False
+
+#     joined = ' '.join(marker.split())
+#     normalized = f" {joined} "
+#     has_dev = " dev " in normalized
+#     not_negated = " not dev " not in normalized
+
+#     return has_dev and not_negated
+
+
+## SCENARIOS
+#
 
 scenarios("configure_hello_world.feature")
 
 # --- Steps for Scenario: Build Hello World Container ---
 
-@given("Kubernetes API Connection")
-def _():
-    skip("not implemented")
+@given("Kubernetes API Connection", target_fixture="k8s_client")
+def _(is_dev: bool) -> CoreV1Api:
+
+    if is_dev:
+        config.load_kube_config()
+    else:
+        config.load_incluster_config()
+
+    return client.CoreV1Api()
 
 @then("The Hello World Container is running")
-def _():
-    config.load_kube_config()
-    v1 = client.CoreV1Api()
-    namespace = "target"
-    label_selector = "app=target"
-    pod_list = v1.list_namespaced_pod(namespace=namespace, label_selector=label_selector)
-    assert len(pod_list.items) > 0, f"FAIL: No pods found with label '{label_selector}' in namespace '{namespace}'"
-    running_pods = [pod for pod in pod_list.items if pod.status.phase == "Running"]
-    assert len(running_pods) > 0, f"FAIL: No pods with label '{label_selector}' are in the 'Running' phase in namespace '{namespace}'"
-    print(f"PASS: Found {len(running_pods)} running pod(s) with label '{label_selector}' in namespace '{namespace}'")
+def _(k8s_client: CoreV1Api) -> None:
+    assert k8s_client.read_namespaced_service("hello-world", "target")
 
 # --- Steps for Scenario: Publish Image to GitHub Container Registry ---
 
