@@ -17,11 +17,12 @@ def markers(pytestconfig) -> str:
     return normalized
 
 @fixture
-def marked(mark: str, markers: str) -> bool:
-    has_dev: bool = f" {mark} " in markers
-    not_negated: bool = f" not {mark} " not in markers
-
-    return has_dev and not_negated
+def marked(markers: str) -> Callable[[str], bool]:
+    def _checker(mark: str) -> bool:
+        has_mark: bool = f" {mark} " in markers
+        not_negated: bool = f" not {mark} " not in markers
+        return has_mark and not_negated
+    return _checker
 
 
 ## SCENARIOS
@@ -33,13 +34,12 @@ scenarios("configure_hello_world.feature")
 
 @given("Kubernetes API Connection is available", target_fixture="k8s_client")
 def _(marked: Callable[[str], bool]) -> CoreV1Api:
-
     if marked('dev'):
         config.load_kube_config()
     elif marked('ci'):
         config.load_incluster_config()
     else:
-        raise RuntimeError("Kubernetes API Connection is not available")
+        raise RuntimeError("Kubernetes config requires '-m dev' or '-m ci' marker.")
 
     return client.CoreV1Api()
 
