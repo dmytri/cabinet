@@ -25,8 +25,8 @@ def pytest_configure(config):
     print("////////////")
     from pprint import pprint
     pprint(config.__dict__)
-     if not config.getvalue('exitfirst'):
-         raise RuntimeError("this cabinet requires -x/--exitfirst to be used.")
+    if not config.getvalue('exitfirst'):
+        raise RuntimeError("this cabinet requires -x/--exitfirst to be used.")
 
 ## ORDERING
 
